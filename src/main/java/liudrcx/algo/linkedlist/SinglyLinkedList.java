@@ -24,10 +24,11 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
 
   @Override
   public void add(int index, T e) {
-    Node p = find(index - 1);
-    if (p == null) {
+    if (index < 0 || index > size) {
       throw new IllegalArgumentException("Invalid index: " + index);
     }
+
+    Node p = find(index - 1);
 
     Node next = p.next;
     Node node = new Node(e);
@@ -38,15 +39,12 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
 
   @Override
   public T remove(int index) {
-    Node p = find(index - 1);
-    if (p == null) {
+    if (index < 0 || index >= size) {
       throw new IllegalArgumentException("Invalid index: " + index);
     }
 
+    Node p = find(index - 1);
     Node node = p.next;
-    if (node == null) {
-      throw new IllegalArgumentException("Invalid index: " + index);
-    }
     Node next = node.next;
     p.next = next;
     size--;
@@ -65,10 +63,11 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
 
   @Override
   public T get(int index) {
-    Node p = find(index);
-    if (p == null) {
+    if (index < 0 || index >= size) {
       throw new IllegalArgumentException("Invalid index: " + index);
     }
+
+    Node p = find(index);
     return p.e;
   }
 
