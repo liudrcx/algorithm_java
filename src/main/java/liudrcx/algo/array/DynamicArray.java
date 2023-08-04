@@ -75,7 +75,7 @@ public class DynamicArray<T> {
   }
 
   public Stream<T> stream() {
-    return Arrays.stream(dataArrays.copyOfRange(data, 0, size));
+    return Arrays.stream(Arrays.copyOfRange(data, 0, size));
   }
 
 }
