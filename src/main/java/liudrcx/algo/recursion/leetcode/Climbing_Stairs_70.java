@@ -1,4 +1,4 @@
-package liudrcx.algo.recursion;
+package liudrcx.algo.recursion.leetcode;
 
 import java.util.Arrays;
 import java.util.HashMap;
