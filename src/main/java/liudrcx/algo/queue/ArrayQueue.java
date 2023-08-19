@@ -51,6 +51,7 @@ public class ArrayQueue<E> implements Queue<E>, Iterable<E>{
     }
 
     E value = data[head];
+    data[head] = null; //for GC
     head = (head + 1) % this.data.length;
     size--;
     return value;

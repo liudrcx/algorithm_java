@@ -49,6 +49,7 @@ public class ArrayStack<E> implements Stack<E>, Iterable<E> {
       return null;
     }
     E value = data[--top];
+    data[top] = null;
     size--;
     return value;
   }
