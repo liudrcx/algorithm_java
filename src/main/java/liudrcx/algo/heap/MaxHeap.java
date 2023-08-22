@@ -67,7 +67,7 @@ public class MaxHeap {
     }
   }
 
-  public void down(int parent) {
+  private void down(int parent) {
     while(true) {
       int max = parent;
 
@@ -88,10 +88,14 @@ public class MaxHeap {
     }
   }
 
-  public void swap(int i, int j) {
+  private void swap(int i, int j) {
     int t = array[i];
     array[i] = array[j];
     array[j] = t;
+  }
+
+  public int size() {
+    return size;
   }
 
   public static void main(String[] args) {
