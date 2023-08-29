@@ -4,6 +4,55 @@ public class BST {
 
   public BSTNode root;
 
+  public void delete(int key) {
+    BSTNode p = root;
+    BSTNode parent = null;
+
+    while(p != null && p.key != key) {
+      parent = p;
+      if (p.key < key) {
+        p = p.right;
+      } else {
+        p = p.left;
+      }
+    }
+
+    //key is not found
+    if (p == null) {
+      return;
+    }
+
+    if (p.left != null && p.right != null) {
+      BSTNode minP = p.right;
+      BSTNode minPP = p;
+      while(minP.left != null) {
+        minPP = minP;
+        minP = minP.left;
+      }
+      p.key = minP.key;
+      p.value = minP.value;
+      p = minP;
+      parent = minPP;
+    }
+
+    BSTNode child;
+    if (p.left != null) {
+      child = p.left;
+    } else if (p.right != null){
+      child = p.right;
+    } else {
+      child = null;
+    }
+
+    if (parent == null) {
+      root = child;
+    } else if(parent.left == p){
+      parent.left = child;
+    } else {
+      parent.right = child;
+    }
+  }
+
   public Object get(int key) {
     BSTNode p = root;
     while(p != null) {

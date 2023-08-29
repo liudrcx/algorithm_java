@@ -1,6 +1,7 @@
 package liudrcx.algo.tree;
 
 import liudrcx.algo.tree.BST.BSTNode;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -130,6 +131,22 @@ public class BSTTest {
     BST tree = new BST();
     tree.root = root;
     return tree;
+  }
+
+  @Test
+  public void delete() {
+    BST tree = createTree();
+    tree.delete(6);
+
+    BSTNode n1 = new BSTNode(1, "张无忌");
+    BSTNode n3 = new BSTNode(3, "宋青书");
+    BSTNode n2 = new BSTNode(2, "周芷若", n1, n3);
+
+    BSTNode n5 = new BSTNode(5, "说不得");
+    BSTNode n7 = new BSTNode(7, "殷离", n5, null);
+    BSTNode root = new BSTNode(4, "小昭", n2, n7);
+
+    Assertions.assertTrue(isSameTree(root, tree.root));
   }
 
   private static boolean isSameTree(BSTNode tree1, BSTNode tree2) {
