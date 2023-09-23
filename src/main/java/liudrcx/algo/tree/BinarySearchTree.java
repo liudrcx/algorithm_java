@@ -1,5 +1,8 @@
 package liudrcx.algo.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree {
 
   BSTNode root;
@@ -124,6 +127,97 @@ public class BinarySearchTree {
     }
 
     return null;
+  }
+
+  public Object delete(int key) {
+    BSTNode parent = null;
+    BSTNode node = root;
+    while(node != null) {
+      if (key < node.key) {
+        parent = node;
+        node = node.left;
+      } else if(node.key < key){
+        parent = node;
+        node = node.right;
+      } else {
+        break;
+      }
+    }
+
+    if (node == null) {
+      return null;
+    }
+
+    if (node.left == null) {
+      shiftForDelete(parent, node, node.right);
+    } else if(node.right == null){
+      shiftForDelete(parent, node, node.left);
+    } else {
+      BSTNode s = node.right;
+      BSTNode sp = node;
+      while(s.left != null) {
+        sp = s;
+        s = s.left;
+      }
+
+      shiftForDelete(sp, s, s.right);
+      shiftForDelete(parent, node, s);
+      s.left = node.left;
+      s.right = node.right;
+    }
+
+    return node.value;
+  }
+
+  private void shiftForDelete(BSTNode parent, BSTNode toDelete, BSTNode child) {
+    if (parent == null) {
+      root = child;
+    } else if (parent.left == toDelete) {
+      parent.left = child;
+    } else {
+      parent.right = child;
+    }
+  }
+
+  public Object deleteByRecursion(int key) {
+    List<Object> result = new ArrayList<>();
+    root = deleteByRecursion(root, key, result);
+    return result.isEmpty() ? null : result.get(0);
+  }
+
+  private BSTNode deleteByRecursion(BSTNode node, int key, List<Object> result) {
+    if (node == null) {
+      return null;
+    }
+
+    if (key < node.key) {
+      node.left = deleteByRecursion(node.left, key, result);
+      return node;
+    }
+
+    if (node.key < key) {
+      node.right = deleteByRecursion(node.right, key, result);
+      return node;
+    }
+
+    result.add(node.value);
+
+    if (node.left == null) {
+      return node.right;
+    }
+
+    if (node.right == null) {
+      return node.left;
+    }
+
+    BSTNode s = node.right;
+    while(s.left != null) {
+      s = s.left;
+    }
+    s.right = deleteByRecursion(node.right, s.key, new ArrayList<>());
+    s.left = node.left;
+
+    return s;
   }
 
   public boolean isSameTree(BinarySearchTree target) {

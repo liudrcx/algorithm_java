@@ -109,6 +109,372 @@ public class BinarySearchTreeTest {
     assertNull(tree.successor(8));
   }
 
+  @Test
+  public void testDeleteLeafChild() {
+        /*
+                     4
+                   /   \
+                  2     7
+                 / \   / \
+                1   3 6   8
+                     /
+                    5
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n5 = new BSTNode(5, 5);
+    BSTNode n6 = new BSTNode(6, 6, n5, null);
+    BSTNode n8 = new BSTNode(8, 8);
+    BSTNode n7 = new BSTNode(7, 7, n6, n8);
+    BSTNode root1 = new BSTNode(4, 4, n2, n7);
+
+    BinarySearchTree tree1 = new BinarySearchTree();
+    tree1.root = root1;
+
+    assertEquals(1, tree1.delete(1));
+    assertEquals(3, tree1.delete(3));
+    assertEquals(5, tree1.delete(5));
+    assertEquals(8, tree1.delete(8));
+
+        /*
+                     4
+                   /   \
+                  2     7
+                       /
+                      6
+         */
+    BSTNode x2 = new BSTNode(2, 2);
+    BSTNode x6 = new BSTNode(6, 6);
+    BSTNode x7 = new BSTNode(7, 7, x6, null);
+    BSTNode root2 = new BSTNode(4, 4, x2, x7);
+    BinarySearchTree tree2 = new BinarySearchTree();
+    tree2.root = root2;
+
+    assertTrue(tree1.isSameTree(tree2));
+  }
+
+  @Test
+  public void testRecursionDeleteLeafChild() {
+        /*
+                     4
+                   /   \
+                  2     7
+                 / \   / \
+                1   3 6   8
+                     /
+                    5
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n5 = new BSTNode(5, 5);
+    BSTNode n6 = new BSTNode(6, 6, n5, null);
+    BSTNode n8 = new BSTNode(8, 8);
+    BSTNode n7 = new BSTNode(7, 7, n6, n8);
+    BSTNode root1 = new BSTNode(4, 4, n2, n7);
+
+    BinarySearchTree tree1 = new BinarySearchTree();
+    tree1.root = root1;
+
+    assertEquals(1, tree1.deleteByRecursion(1));
+    assertEquals(3, tree1.deleteByRecursion(3));
+    assertEquals(5, tree1.deleteByRecursion(5));
+    assertEquals(8, tree1.deleteByRecursion(8));
+
+        /*
+                     4
+                   /   \
+                  2     7
+                       /
+                      6
+         */
+    BSTNode x2 = new BSTNode(2, 2);
+    BSTNode x6 = new BSTNode(6, 6);
+    BSTNode x7 = new BSTNode(7, 7, x6, null);
+    BSTNode root2 = new BSTNode(4, 4, x2, x7);
+    BinarySearchTree tree2 = new BinarySearchTree();
+    tree2.root = root2;
+
+    assertTrue(tree1.isSameTree(tree2));
+  }
+
+  @Test
+  public void testDeleteNodeWithOnlyOneChild() {
+        /*
+                     4
+                   /   \
+                  2     7
+                 / \   /
+                1   3 6
+                     /
+                    5
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n5 = new BSTNode(5, 5);
+    BSTNode n6 = new BSTNode(6, 6, n5, null);
+    BSTNode n7 = new BSTNode(7, 7, n6, null);
+    BSTNode root1 = new BSTNode(4, 4, n2, n7);
+
+    BinarySearchTree tree1 = new BinarySearchTree();
+    tree1.root = root1;
+
+    assertEquals(7, tree1.delete(7));
+
+        /*
+                     4
+                   /   \
+                  2     6
+                 / \   /
+                1   3 5
+         */
+    BSTNode x1 = new BSTNode(1, 1);
+    BSTNode x3 = new BSTNode(3, 3);
+    BSTNode x2 = new BSTNode(2, 2, x1, x3);
+    BSTNode x5 = new BSTNode(5, 5);
+    BSTNode x6 = new BSTNode(6, 6, x5, null);
+    BSTNode root2 = new BSTNode(4, 4, x2, x6);
+    BinarySearchTree tree2 = new BinarySearchTree();
+    tree2.root = root2;
+
+    assertTrue(tree1.isSameTree(tree2));
+  }
+
+  @Test
+  public void testRecursionDeleteNodeWithOnlyOneChild() {
+        /*
+                     4
+                   /   \
+                  2     7
+                 / \   /
+                1   3 6
+                     /
+                    5
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n5 = new BSTNode(5, 5);
+    BSTNode n6 = new BSTNode(6, 6, n5, null);
+    BSTNode n7 = new BSTNode(7, 7, n6, null);
+    BSTNode root1 = new BSTNode(4, 4, n2, n7);
+
+    BinarySearchTree tree1 = new BinarySearchTree();
+    tree1.root = root1;
+
+    assertEquals(7, tree1.deleteByRecursion(7));
+
+        /*
+                     4
+                   /   \
+                  2     6
+                 / \   /
+                1   3 5
+         */
+    BSTNode x1 = new BSTNode(1, 1);
+    BSTNode x3 = new BSTNode(3, 3);
+    BSTNode x2 = new BSTNode(2, 2, x1, x3);
+    BSTNode x5 = new BSTNode(5, 5);
+    BSTNode x6 = new BSTNode(6, 6, x5, null);
+    BSTNode root2 = new BSTNode(4, 4, x2, x6);
+    BinarySearchTree tree2 = new BinarySearchTree();
+    tree2.root = root2;
+
+    assertTrue(tree1.isSameTree(tree2));
+  }
+
+  @Test
+  public void testDeleteNodeWithTwoChildren1() {
+        /*
+                      4
+                   /     \
+                  2      7
+                 / \   /   \
+                1   3 5     8
+                       \
+                        6
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n6 = new BSTNode(6, 6);
+    BSTNode n5 = new BSTNode(5, 5, null, n6);
+    BSTNode n8 = new BSTNode(8, 8);
+    BSTNode n7 = new BSTNode(7, 7, n5, n8);
+    BSTNode root1 = new BSTNode(4, 4, n2, n7);
+
+    BinarySearchTree tree1 = new BinarySearchTree();
+    tree1.root = root1;
+
+    assertEquals(4, tree1.delete(4));
+
+
+        /*
+                      5
+                   /     \
+                  2      7
+                 / \   /   \
+                1   3 6     8
+
+         */
+    BSTNode x1 = new BSTNode(1, 1);
+    BSTNode x3 = new BSTNode(3, 3);
+    BSTNode x2 = new BSTNode(2, 2, x1, x3);
+
+    BSTNode x6 = new BSTNode(6, 6);
+    BSTNode x8 = new BSTNode(8, 8);
+    BSTNode x7 = new BSTNode(7, 7, x6, x8);
+    BSTNode root2 = new BSTNode(5, 5, x2, x7);
+    BinarySearchTree tree2 = new BinarySearchTree();
+    tree2.root = root2;
+
+    assertTrue(tree1.isSameTree(tree2));
+  }
+
+  @Test
+  public void testRecursionDeleteNodeWithTwoChildren1() {
+        /*
+                      4
+                   /     \
+                  2      7
+                 / \   /   \
+                1   3 5     8
+                       \
+                        6
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n6 = new BSTNode(6, 6);
+    BSTNode n5 = new BSTNode(5, 5, null, n6);
+    BSTNode n8 = new BSTNode(8, 8);
+    BSTNode n7 = new BSTNode(7, 7, n5, n8);
+    BSTNode root1 = new BSTNode(4, 4, n2, n7);
+
+    BinarySearchTree tree1 = new BinarySearchTree();
+    tree1.root = root1;
+
+    assertEquals(4, tree1.deleteByRecursion(4));
+
+
+        /*
+                      5
+                   /     \
+                  2      7
+                 / \   /   \
+                1   3 6     8
+
+         */
+    BSTNode x1 = new BSTNode(1, 1);
+    BSTNode x3 = new BSTNode(3, 3);
+    BSTNode x2 = new BSTNode(2, 2, x1, x3);
+
+    BSTNode x6 = new BSTNode(6, 6);
+    BSTNode x8 = new BSTNode(8, 8);
+    BSTNode x7 = new BSTNode(7, 7, x6, x8);
+    BSTNode root2 = new BSTNode(5, 5, x2, x7);
+    BinarySearchTree tree2 = new BinarySearchTree();
+    tree2.root = root2;
+
+    assertTrue(tree1.isSameTree(tree2));
+  }
+
+  @Test
+  public void testDeleteNodeWithTwoChildren2() {
+    /*
+                     4
+                   /   \
+                  2     5
+                 / \     \
+                1   3     6
+
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n6 = new BSTNode(6, 6);
+    BSTNode n5 = new BSTNode(5, 5, null, n6);
+    BSTNode root1 = new BSTNode(4, 4, n2, n5);
+
+    BinarySearchTree tree1 = new BinarySearchTree();
+    tree1.root = root1;
+
+    assertEquals(4, tree1.delete(4));
+
+
+        /*
+                     5
+                   /  \
+                  2    6
+                 / \
+                1   3
+
+         */
+    BSTNode x1 = new BSTNode(1, 1);
+    BSTNode x3 = new BSTNode(3, 3);
+    BSTNode x2 = new BSTNode(2, 2, x1, x3);
+
+    BSTNode x6 = new BSTNode(6, 6);
+    BSTNode root2 = new BSTNode(5, 5, x2, x6);
+    BinarySearchTree tree2 = new BinarySearchTree();
+    tree2.root = root2;
+
+    assertTrue(tree1.isSameTree(tree2));
+  }
+
+  @Test
+  public void testRecursionDeleteNodeWithTwoChildren2() {
+    /*
+                     4
+                   /   \
+                  2     5
+                 / \     \
+                1   3     6
+
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n6 = new BSTNode(6, 6);
+    BSTNode n5 = new BSTNode(5, 5, null, n6);
+    BSTNode root1 = new BSTNode(4, 4, n2, n5);
+
+    BinarySearchTree tree1 = new BinarySearchTree();
+    tree1.root = root1;
+
+    assertEquals(4, tree1.deleteByRecursion(4));
+
+
+        /*
+                     5
+                   /  \
+                  2    6
+                 / \
+                1   3
+
+         */
+    BSTNode x1 = new BSTNode(1, 1);
+    BSTNode x3 = new BSTNode(3, 3);
+    BSTNode x2 = new BSTNode(2, 2, x1, x3);
+
+    BSTNode x6 = new BSTNode(6, 6);
+    BSTNode root2 = new BSTNode(5, 5, x2, x6);
+    BinarySearchTree tree2 = new BinarySearchTree();
+    tree2.root = root2;
+
+    assertTrue(tree1.isSameTree(tree2));
+  }
+
   public BinarySearchTree createTree() {
         /*
                      4
