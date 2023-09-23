@@ -19,6 +19,10 @@ public class BinarySearchTree {
   }
 
   public Object min() {
+    return min(root);
+  }
+
+  public Object min(BSTNode root) {
     BSTNode node = root;
     while(node != null && node.left != null) {
       node = node.left;
@@ -27,6 +31,10 @@ public class BinarySearchTree {
   }
 
   public Object max() {
+    return max(root);
+  }
+
+  private Object max(BSTNode root) {
     BSTNode node = root;
     while(node != null && node.right != null) {
       node = node.right;
@@ -58,6 +66,64 @@ public class BinarySearchTree {
     } else {
       parent.right = new BSTNode(key, value);
     }
+  }
+
+  public Object predecessor(int key) {
+    BSTNode node = root;
+    BSTNode leftFromParent = null;
+    while(node != null) {
+      if (key < node.key) {
+        node = node.left;
+      } else if (node.key < key) {
+        leftFromParent = node;
+        node = node.right;
+      } else {
+        break;
+      }
+    }
+
+    if (node == null) {
+      return null;
+    }
+
+    if (node.left != null) {
+      return max(node.left);
+    }
+
+    if (leftFromParent != null) {
+      return leftFromParent.value;
+    }
+
+    return null;
+  }
+
+  public Object successor(int key) {
+    BSTNode node = root;
+    BSTNode leftFromParent = null;
+    while(node != null) {
+      if (key < node.key) {
+        leftFromParent = node;
+        node = node.left;
+      } else if(node.key < key){
+        node = node.right;
+      } else {
+        break;
+      }
+    }
+
+    if (node == null) {
+      return null;
+    }
+
+    if (node.right != null) {
+      return min(node.right);
+    }
+
+    if (leftFromParent != null) {
+      return leftFromParent.value;
+    }
+
+    return null;
   }
 
   public boolean isSameTree(BinarySearchTree target) {
