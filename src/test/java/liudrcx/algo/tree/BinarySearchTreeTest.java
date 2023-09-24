@@ -2,6 +2,9 @@ package liudrcx.algo.tree;
 
 import liudrcx.algo.tree.BinarySearchTree.BSTNode;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BinarySearchTreeTest {
@@ -473,6 +476,79 @@ public class BinarySearchTreeTest {
     tree2.root = root2;
 
     assertTrue(tree1.isSameTree(tree2));
+  }
+
+  @Test
+  public void testLess() {
+        /*
+                 4
+               /   \
+              2     6
+             / \   / \
+            1   3 5   7
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n5 = new BSTNode(5, 5);
+    BSTNode n7 = new BSTNode(7, 7);
+    BSTNode n6 = new BSTNode(6, 6, n5, n7);
+    BSTNode root = new BSTNode(4, 4, n2, n6);
+
+    BinarySearchTree tree = new BinarySearchTree();
+    tree.root = root;
+
+    assertIterableEquals(List.of(1, 2, 3, 4, 5), tree.less(6));
+  }
+
+  @Test
+  public void testGreater() {
+        /*
+                 4
+               /   \
+              2     6
+             / \   / \
+            1   3 5   7
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n5 = new BSTNode(5, 5);
+    BSTNode n7 = new BSTNode(7, 7);
+    BSTNode n6 = new BSTNode(6, 6, n5, n7);
+    BSTNode root = new BSTNode(4, 4, n2, n6);
+
+    BinarySearchTree tree = new BinarySearchTree();
+    tree.root = root;
+
+    assertIterableEquals(List.of(7), tree.greater(6));
+    assertIterableEquals(List.of(6, 7), tree.greater(5));
+  }
+
+  @Test
+  public void testBetween() {
+        /*
+                 4
+               /   \
+              2     6
+             / \   / \
+            1   3 5   7
+         */
+    BSTNode n1 = new BSTNode(1, 1);
+    BSTNode n3 = new BSTNode(3, 3);
+    BSTNode n2 = new BSTNode(2, 2, n1, n3);
+
+    BSTNode n5 = new BSTNode(5, 5);
+    BSTNode n7 = new BSTNode(7, 7);
+    BSTNode n6 = new BSTNode(6, 6, n5, n7);
+    BSTNode root = new BSTNode(4, 4, n2, n6);
+
+    BinarySearchTree tree = new BinarySearchTree();
+    tree.root = root;
+
+    assertIterableEquals(List.of(3, 4, 5), tree.between(3, 5));
   }
 
   public BinarySearchTree createTree() {

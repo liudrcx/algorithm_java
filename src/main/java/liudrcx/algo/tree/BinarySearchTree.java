@@ -1,7 +1,9 @@
 package liudrcx.algo.tree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 public class BinarySearchTree {
 
@@ -218,6 +220,86 @@ public class BinarySearchTree {
     s.left = node.left;
 
     return s;
+  }
+
+  public List<Object> less(int key) {
+    List<Object> result = new ArrayList<>();
+    if (root == null) {
+      return result;
+    }
+
+    Stack<BSTNode> stack = new Stack<>();
+    BSTNode node = root;
+
+    while(node != null || !stack.isEmpty()) {
+      if (node != null) {
+        stack.push(node);
+        node = node.left;
+      } else {
+        BSTNode pop = stack.pop();
+        if (pop.key < key) {
+          result.add(pop.value);
+        } else {
+          break;
+        }
+        node = pop.right;
+      }
+    }
+    return result;
+  }
+
+  public List<Object> greater(int key) {
+    List<Object> result = new ArrayList<>();
+    if (root == null) {
+      return result;
+    }
+
+    Stack<BSTNode> stack = new Stack<>();
+    BSTNode node = root;
+
+    while(node != null || !stack.isEmpty()) {
+      if (node != null) {
+        stack.push(node);
+        node = node.right;
+      } else {
+        BSTNode pop = stack.pop();
+        if (pop.key > key) {
+          result.add(pop.value);
+        } else {
+          break;
+        }
+        node = pop.left;
+      }
+    }
+
+    Collections.reverse(result);
+    return result;
+  }
+
+  public List<Object> between(int key1, int key2) {
+    List<Object> result = new ArrayList<>();
+    if (root == null) {
+      return result;
+    }
+
+    Stack<BSTNode> stack = new Stack<>();
+    BSTNode node = root;
+    while(node != null || !stack.isEmpty()) {
+      if (node != null) {
+        stack.push(node);
+        node = node.left;
+      } else {
+        BSTNode pop = stack.pop();
+        if (pop.key >= key1 && pop.key <= key2) {
+          result.add(pop.value);
+        } else if (pop.key > key2){
+          break;
+        }
+        node = pop.right;
+      }
+    }
+
+    return result;
   }
 
   public boolean isSameTree(BinarySearchTree target) {
