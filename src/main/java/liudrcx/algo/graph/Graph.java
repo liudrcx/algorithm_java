@@ -90,7 +90,76 @@ public class Graph {
         }
       }
     }
+    return result;
+  }
+
+  public List<String> topoLogicalSortWithKahn() {
+    List<String> result = new ArrayList<>();
+
+    //init in degree
+    for (Vertex vertex : vertices) {
+      for (Edge edge : vertex.getEdges()) {
+        edge.getLinked().incrIndegree();
+      }
+    }
+
+    Queue<Vertex> queue = new LinkedList<>();
+    for (Vertex vertex : vertices) {
+      if (vertex.getInDegree() == 0) {
+        queue.offer(vertex);
+      }
+    }
+
+    while(!queue.isEmpty()) {
+      Vertex v = queue.poll();
+      result.add(v.getName());
+
+      for (Edge edge : v.getEdges()) {
+        edge.getLinked().decrIndegree();
+        if (edge.getLinked().getInDegree() == 0) {
+          queue.offer(edge.getLinked());
+        }
+      }
+    }
+
+    if (result.size() != vertices.size()) {
+      throw new RuntimeException("Cycle dependency found!");
+    }
 
     return result;
   }
+
+  public List<String> topoLogicWithDfs() {
+    Stack<Vertex> stack = new Stack<>();
+    for (Vertex vertex : vertices) {
+      if (vertex.getStatus() == 0) {
+        topoLogicWithDfs(vertex, stack);
+      }
+    }
+
+    List<String> result = new ArrayList<>();
+    while(!stack.isEmpty()) {
+      result.add(stack.pop().getName());
+    }
+    return result;
+  }
+
+  private void topoLogicWithDfs(Vertex vertex,  Stack<Vertex> stack) {
+    if (vertex.getStatus() == 2) {
+      return;
+    }
+
+    if (vertex.getStatus() == 1) {
+      throw new RuntimeException("Cycle dependency found");
+    }
+
+    vertex.setStatus(1);
+    for (Edge edge : vertex.getEdges()) {
+      topoLogicWithDfs(edge.getLinked(), stack);
+    }
+
+    vertex.setStatus(2);
+    stack.add(vertex);
+  }
+
 }
