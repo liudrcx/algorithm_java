@@ -39,15 +39,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>{
 
   @Override
   public void addLast(T e) {
-    Node p = tail.prev;
-    Node next = tail;
-
-    Node node = new Node(e);
-    node.next = next;
-    node.prev = p;
-    p.next = node;
-    next.prev = node;
-    size++;
+    add(size, e);
   }
 
   @Override
@@ -94,17 +86,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>{
 
   @Override
   public T removeLast() {
-    if (size == 0) {
-      throw new IllegalArgumentException("Invalid index");
-    }
-
-    Node node = tail.prev;
-    Node p = node.prev;
-    Node next = tail;
-    p.next = next;
-    next.prev = p;
-    size--;
-    return node.e;
+    return remove(size - 1);
   }
 
   @Override
