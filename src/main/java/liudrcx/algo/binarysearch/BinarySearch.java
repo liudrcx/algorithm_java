@@ -17,6 +17,25 @@ public class BinarySearch {
     return -1;
   }
 
+  public static int binarySearchRecursion(int[] arr, int target) {
+    return binarySearchRecursion(arr, target, 0, arr.length - 1);
+  }
+
+  private static int binarySearchRecursion(int[] arr, int target, int i, int j) {
+    if (i > j) {
+      return -1;
+    }
+
+    int m = (i + j) >>> 1;
+    if (target < arr[m]) {
+      return binarySearchRecursion(arr, target, i, m - 1);
+    } else if (arr[m] < target) {
+      return binarySearchRecursion(arr, target, m + 1, j);
+    } else {
+      return m;
+    }
+  }
+
   /**
    * <h3>二分查找改动版</h3>
    *

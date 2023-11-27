@@ -42,6 +42,26 @@ public class BubbleSort {
     }
   }
 
+  public void sort_recursion(int[] arr) {
+    sort_recursion(arr, arr.length - 1);
+  }
+
+  private void sort_recursion(int[] arr, int j) {
+    if (j == 0) {
+      return;
+    }
+
+    int x = 0;
+    for(int i = 0; i < j; i++) {
+      if (arr[i] > arr[i + 1]) {
+        swap(arr, i, i + 1);
+        x = i;
+      }
+    }
+
+    sort_recursion(arr, x);
+  }
+
   private void swap(int[] arr, int i, int j) {
     int t = arr[i];
     arr[i] = arr[j];
