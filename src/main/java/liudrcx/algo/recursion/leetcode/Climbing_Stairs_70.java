@@ -1,37 +1,50 @@
 package liudrcx.algo.recursion.leetcode;
 
+import org.assertj.core.api.Assertions;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *https://leetcode.com/problems/climbing-stairs/
  */
 public class Climbing_Stairs_70 {
 
-  class Solution1 {
-
-    private Map<Integer, Integer> cached = new HashMap<>();
-
+  static class Solution {
     public int climbStairs(int n) {
-      if (cached.containsKey(n)) {
-        return cached.get(n);
-      }
+      int[] cached = new int[n + 1];
+      Arrays.fill(cached, -1);
+      return climbStairs(n, cached);
+    }
 
+    private int climbStairs(int n, int[] cached) {
       if (n == 1) {
-        cached.put(1, 1);
         return 1;
       }
 
       if (n == 2) {
-        cached.put(2, 2);
         return 2;
       }
 
-      int result = climbStairs(n - 1) + climbStairs(n - 2);
-      cached.put(n, result);
+      if (cached[n] != -1) {
+        return cached[n];
+      }
+
+      int result = climbStairs(n - 1, cached) + climbStairs(n - 2, cached);
+      cached[n] = result;
       return result;
     }
+  }
+
+  public static void main(String[] args){
+    int result = new Solution().climbStairs(2);
+    assertThat(result).isEqualTo(2);
+
+    result = new Solution().climbStairs(1);
+    assertThat(result).isEqualTo(1);
   }
 
 }
