@@ -37,8 +37,7 @@ public class ArrayStack<E> implements Stack<E>, Iterable<E> {
     if (isFull()) {
       return false;
     }
-    data[top] = value;
-    top++;
+    data[top++] = value;
     size++;
     return true;
   }

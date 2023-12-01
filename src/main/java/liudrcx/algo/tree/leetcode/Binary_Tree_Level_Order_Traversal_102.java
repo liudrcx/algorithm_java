@@ -1,4 +1,4 @@
-package liudrcx.algo.queue.leetcode;
+package liudrcx.algo.tree.leetcode;
 
 import liudrcx.algo.tree.TreeNode;
 
@@ -37,26 +37,25 @@ public class Binary_Tree_Level_Order_Traversal_102 {
       Queue<TreeNode> queue = new LinkedList<>();
       queue.offer(root);
 
-      while(! queue.isEmpty()) {
+      while(!queue.isEmpty()) {
         int size = queue.size();
-        List<Integer> levels = new ArrayList<>(size);
-        result.add(levels);
+        List<Integer> levelList = new ArrayList<>(size);
+        result.add(levelList);
 
         for(int i = 0; i < size; i++) {
           TreeNode node = queue.poll();
-          levels.add(node.val);
+          levelList.add(node.val);
 
-          TreeNode left = node.left;
-          if (left != null) {
-            queue.offer(left);
+          if (node.left != null) {
+            queue.offer(node.left);
           }
 
-          TreeNode right = node.right;
-          if (right != null) {
-            queue.offer(right);
+          if (node.right != null) {
+            queue.offer(node.right);
           }
         }
       }
+
       return result;
     }
   }
