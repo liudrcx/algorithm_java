@@ -10,33 +10,35 @@ public class Evaluate_Reverse_Polish_Notation_150 {
   class Solution {
     public int evalRPN(String[] tokens) {
       Stack<Integer> stack = new Stack<>();
-      for (String token : tokens) {
-        switch (token) {
+
+      for(String token : tokens) {
+        switch(token) {
           case "+" -> {
-            Integer b = stack.pop();
-            Integer a = stack.pop();
-            stack.push(a + b);
+            Integer right = stack.pop();
+            Integer left = stack.pop();
+            stack.push(left + right);
           }
           case "-" -> {
-            Integer b = stack.pop();
-            Integer a = stack.pop();
-            stack.push(a - b);
+            Integer right = stack.pop();
+            Integer left = stack.pop();
+            stack.push(left - right);
           }
           case "*" -> {
-            Integer b = stack.pop();
-            Integer a = stack.pop();
-            stack.push(a * b);
+            Integer right = stack.pop();
+            Integer left = stack.pop();
+            stack.push(left * right);
           }
           case "/" -> {
-            Integer b = stack.pop();
-            Integer a = stack.pop();
-            stack.push(a / b);
+            Integer right = stack.pop();
+            Integer left = stack.pop();
+            stack.push(left / right);
           }
           default -> {
             stack.push(Integer.parseInt(token));
           }
         }
       }
+
       return stack.pop();
     }
   }
