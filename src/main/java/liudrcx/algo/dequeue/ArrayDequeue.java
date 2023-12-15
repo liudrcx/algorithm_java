@@ -11,7 +11,6 @@ public class ArrayDequeue<E> implements Deque<E>, Iterable<E>{
 
   public ArrayDequeue(int capacity) {
     data = (E[]) new Object[capacity + 1];
-
   }
 
   private int inc(int i) {
