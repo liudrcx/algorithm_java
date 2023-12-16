@@ -15,7 +15,7 @@ public class Merge_k_Sorted_Lists_23 {
    *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
    * }
    */
-  class Solution {
+  class Solution1 {
     public ListNode mergeKLists(ListNode[] lists) {
       if (lists.length == 0) {
         return null;
