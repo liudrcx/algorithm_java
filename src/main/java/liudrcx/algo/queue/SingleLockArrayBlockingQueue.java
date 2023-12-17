@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ArrayBlockingQueue<E> implements BlockingQueue<E> {
+public class SingleLockArrayBlockingQueue<E> implements BlockingQueue<E> {
 
   private E[] data;
   private int size = 0;
@@ -16,7 +16,7 @@ public class ArrayBlockingQueue<E> implements BlockingQueue<E> {
   private Condition tailWaits = lock.newCondition();
   private Condition headWaits = lock.newCondition();
 
-  public ArrayBlockingQueue(int capacity) {
+  public SingleLockArrayBlockingQueue(int capacity) {
     this.data = (E[]) new Object[capacity + 1];
   }
 
@@ -38,11 +38,56 @@ public class ArrayBlockingQueue<E> implements BlockingQueue<E> {
   }
 
   @Override
+  public boolean offer(E value, long timeout) throws InterruptedException {
+    lock.lockInterruptibly();
+    try {
+      long time = TimeUnit.MILLISECONDS.toNanos(timeout);
+      while (isFull()) {
+        if (time <= 0) {
+          return false;
+        }
+        time = tailWaits.awaitNanos(time);
+      }
+
+      data[tail] = value;
+      tail = (tail + 1) % this.data.length;
+      size++;
+      headWaits.signalAll();
+      return true;
+    } finally{
+      lock.unlock();
+    }
+  }
+
+  @Override
   public E poll() throws InterruptedException {
     lock.lockInterruptibly();
     try {
       while (isEmpty()) {
         headWaits.await();
+      }
+
+      E value = data[head];
+      data[head] = null; //for GC
+      head = (head + 1) % this.data.length;
+      size--;
+      tailWaits.signalAll();
+      return value;
+    } finally{
+      lock.unlock();
+    }
+  }
+
+  @Override
+  public E poll(long timeout) throws InterruptedException {
+    lock.lockInterruptibly();
+    try {
+      long time = TimeUnit.MILLISECONDS.toNanos(timeout);
+      while (isEmpty()) {
+        if (time <= 0) {
+          return null;
+        }
+        time = headWaits.awaitNanos(time);
       }
 
       E value = data[head];
@@ -70,9 +115,10 @@ public class ArrayBlockingQueue<E> implements BlockingQueue<E> {
   }
 
   public static void main(String[] args) throws InterruptedException {
-    BlockingQueue<String> queue = new ArrayBlockingQueue<>(3);
+    BlockingQueue<String> queue = new SingleLockArrayBlockingQueue<>(3);
     new Thread(()->{
       try {
+        System.out.println(queue.poll());
         System.out.println(queue.poll());
       } catch (InterruptedException e) {
         throw new RuntimeException(e);
