@@ -8,7 +8,6 @@ public class MaxHeap<T extends Comparable<T>> {
 
   public MaxHeap(int capacity) {
     this.data = (T[]) new Comparable[capacity];
-    heapify();
   }
 
   public T peek() {
@@ -87,11 +86,11 @@ public class MaxHeap<T extends Comparable<T>> {
     data[j] = t;
   }
 
-  private boolean isEmpty() {
+  public boolean isEmpty() {
     return size == 0;
   }
 
-  private boolean isFull() {
+  public boolean isFull() {
     return size == data.length;
   }
 

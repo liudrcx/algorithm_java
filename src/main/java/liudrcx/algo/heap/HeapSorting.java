@@ -1,7 +1,5 @@
 package liudrcx.algo.heap;
 
-import java.util.Arrays;
-
 public class HeapSorting {
 
   public void sort(int[] arr) {
@@ -46,11 +44,6 @@ public class HeapSorting {
       size--;
       down(index);
       return deleted;
-    }
-
-    public void replace(int replaced) {
-      array[0] = replaced;
-      down(0);
     }
 
     public boolean offer(int value) {

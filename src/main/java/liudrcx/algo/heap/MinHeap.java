@@ -7,8 +7,8 @@ public class MinHeap<T extends Comparable<T>> {
   private int capacity;
 
   public MinHeap(int capacity) {
+    this.capacity = capacity;
     this.data = (T[]) new Comparable[capacity];
-    heapify();
   }
 
   public T peek() {
@@ -28,6 +28,11 @@ public class MinHeap<T extends Comparable<T>> {
     size--;
     down(0);
     return deleted;
+  }
+
+  public void replace(T value) {
+    data[0] = value;
+    down(0);
   }
 
   public boolean offer(T value) {
@@ -62,22 +67,22 @@ public class MinHeap<T extends Comparable<T>> {
 
   private void down(int parent) {
     while(true) {
-      int max = parent;
+      int min = parent;
 
       int left = parent * 2 + 1;
       int right = left + 1;
 
-      if (left < size && data[max].compareTo(data[left]) > 0) {
-        max = left;
+      if (left < size && data[min].compareTo(data[left]) > 0) {
+        min = left;
       }
-      if (right < size && data[max].compareTo(data[right]) > 0) {
-        max = right;
+      if (right < size && data[min].compareTo(data[right]) > 0) {
+        min = right;
       }
-      if (max == parent) {
+      if (min == parent) {
         break;
       }
-      swap(max, parent);
-      parent = max;
+      swap(min, parent);
+      parent = min;
     }
   }
 
@@ -87,12 +92,12 @@ public class MinHeap<T extends Comparable<T>> {
     data[j] = t;
   }
 
-  private boolean isEmpty() {
+  public boolean isEmpty() {
     return size == 0;
   }
 
-  private boolean isFull() {
-    return size == data.length;
+  public boolean isFull() {
+    return size == capacity;
   }
 
   public int size() {
