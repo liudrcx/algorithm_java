@@ -1,12 +1,12 @@
 package liudrcx.algo.heap;
 
-public class MaxHeap<T extends Comparable<T>> {
+public class MinHeap<T extends Comparable<T>> {
 
   private T[] data;
   private int size;
   private int capacity;
 
-  public MaxHeap(int capacity) {
+  public MinHeap(int capacity) {
     this.data = (T[]) new Comparable[capacity];
     heapify();
   }
@@ -44,7 +44,7 @@ public class MaxHeap<T extends Comparable<T>> {
     int child = size;
     while(child > 0) {
       int parent = (child - 1) / 2;
-      if (data[parent].compareTo(value) < 0) {
+      if (data[parent].compareTo(value) > 0) {
         data[child] = data[parent];
       } else {
         break;
@@ -67,10 +67,10 @@ public class MaxHeap<T extends Comparable<T>> {
       int left = parent * 2 + 1;
       int right = left + 1;
 
-      if (left < size && data[max].compareTo(data[left]) < 0) {
+      if (left < size && data[max].compareTo(data[left]) > 0) {
         max = left;
       }
-      if (right < size && data[max].compareTo(data[right]) < 0) {
+      if (right < size && data[max].compareTo(data[right]) > 0) {
         max = right;
       }
       if (max == parent) {
