@@ -1,5 +1,6 @@
-package liudrcx.algo.array;
+package liudrcx.algo.sorting;
 
+import liudrcx.algo.sorting.KthSmallest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

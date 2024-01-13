@@ -1,5 +1,6 @@
 package liudrcx.algo.tree.leetcode;
 
+import liudrcx.algo.tree.BinarySearchTree;
 import liudrcx.algo.tree.TreeNode;
 
 /**

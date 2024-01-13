@@ -65,7 +65,6 @@ public class BinarySearchTree {
 
     if (parent == null) {
       root = new BSTNode(key, value);
-
     } else if (key < parent.key) {
       parent.left = new BSTNode(key, value);
     } else {
