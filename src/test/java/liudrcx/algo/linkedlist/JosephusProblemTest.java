@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 public class JosephusProblemTest {
 
-
   @Test
   public void testExecute() {
     JosephusProblem problem = new JosephusProblem();
