@@ -51,8 +51,9 @@ public class LinkedListStack<E> implements Stack<E>, Iterable<E>{
       return null;
     }
 
-    E value = head.next.value;
-    head.next = head.next.next;
+    Node node = head.next;
+    E value = node.value;
+    head.next = node.next;
     size--;
     return value;
   }
@@ -62,7 +63,8 @@ public class LinkedListStack<E> implements Stack<E>, Iterable<E>{
     if (isEmpty()) {
       return null;
     }
-    return head.next.value;
+    Node node = head.next;
+    return node.value;
   }
 
   @Override
