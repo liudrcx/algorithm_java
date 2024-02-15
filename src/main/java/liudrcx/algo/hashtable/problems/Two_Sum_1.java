@@ -1,4 +1,4 @@
-package liudrcx.algo.hashmap.leetcode;
+package liudrcx.algo.hashtable.problems;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,15 +10,16 @@ public class Two_Sum_1 {
 
   class Solution {
     public int[] twoSum(int[] nums, int target) {
-      Map<Integer, Integer> map = new HashMap<>();
+      Map<Integer, Integer> numMap = new HashMap<>();
       for (int i = 0; i < nums.length; i++) {
-        if (map.containsKey(target - nums[i])) {
-          return new int[] {map.get(target - nums[i]), i};
+        int v = target - nums[i];
+        if (numMap.containsKey(v)) {
+          return new int[] {numMap.get(v), i};
         } else {
-          map.put(nums[i], i);
+          numMap.put(nums[i], i);
         }
       }
-      return new int[] {-1, -1};
+      return new int[]{};
     }
   }
 }
