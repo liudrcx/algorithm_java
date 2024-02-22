@@ -24,7 +24,7 @@ public class DynamicArray<T> {
     }
 
     if (size == capacity) {
-      expandArray();
+      growArray();
     }
 
     if (index < size) {
@@ -35,7 +35,7 @@ public class DynamicArray<T> {
     size++;
   }
 
-  private void expandArray() {
+  private void growArray() {
     capacity += capacity >>> 1;
     T[] newData = (T[]) new Object[capacity];
     System.arraycopy(data, 0, newData, 0, size);
@@ -68,6 +68,14 @@ public class DynamicArray<T> {
     }
     size--;
     return e;
+  }
+
+  public T removeFirst() {
+    return remove(0);
+  }
+
+  public T removeLast() {
+    return remove(size - 1);
   }
 
   public int size() {

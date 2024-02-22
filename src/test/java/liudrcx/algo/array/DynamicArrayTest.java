@@ -26,7 +26,7 @@ public class DynamicArrayTest {
   }
 
   @Test
-  public void testExpandArray() {
+  public void testGrowArray() {
     DynamicArray dynamicArray = new DynamicArray(3);
     dynamicArray.addLast(1);
     dynamicArray.addLast(2);
@@ -52,6 +52,40 @@ public class DynamicArrayTest {
 
     assertThat(dynamicArray.stream())
         .hasSameElementsAs(List.of(1, 2, 4));
+
+    assertThat(dynamicArray.size()).isEqualTo(3);
+  }
+
+  @Test
+  public void testRemoveFirst() {
+    DynamicArray dynamicArray = new DynamicArray(3);
+    dynamicArray.addLast(1);
+    dynamicArray.addLast(2);
+    dynamicArray.addLast(3);
+    dynamicArray.addLast(4);
+
+    //2, 3, 4
+    dynamicArray.removeFirst();
+
+    assertThat(dynamicArray.stream())
+      .hasSameElementsAs(List.of(2, 3, 4));
+
+    assertThat(dynamicArray.size()).isEqualTo(3);
+  }
+
+  @Test
+  public void testRemoveLast() {
+    DynamicArray dynamicArray = new DynamicArray(3);
+    dynamicArray.addLast(1);
+    dynamicArray.addLast(2);
+    dynamicArray.addLast(3);
+    dynamicArray.addLast(4);
+
+    //1, 2, 3
+    dynamicArray.removeLast();
+
+    assertThat(dynamicArray.stream())
+      .hasSameElementsAs(List.of(1, 2, 3));
 
     assertThat(dynamicArray.size()).isEqualTo(3);
   }
