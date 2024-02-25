@@ -66,9 +66,6 @@ public class DoublyLinkedList<T> implements LinkedList<T>{
     }
 
     Node p = find(index - 1);
-    if (p == null) {
-      throw new IllegalArgumentException("Invalid index: " + index);
-    }
     Node node = p.next;
     Node next = node.next;
 
@@ -91,10 +88,11 @@ public class DoublyLinkedList<T> implements LinkedList<T>{
 
   @Override
   public T get(int index) {
-    Node node = find(index);
-    if (node == null) {
+    if (index < 0 || index >= size) {
       throw new IllegalArgumentException("Invalid index: " + index);
     }
+
+    Node node = find(index);
     return node.e;
   }
 
