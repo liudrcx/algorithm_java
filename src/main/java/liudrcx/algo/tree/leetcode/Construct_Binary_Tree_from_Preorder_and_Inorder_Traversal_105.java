@@ -59,8 +59,6 @@ public class Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal_105 {
         return null;
       }
 
-
-
       int rootVal = preorder[preStart];
       int index = inOrderIndexMap.get(rootVal);
       int leftCount = index - inStart;
