@@ -5,7 +5,9 @@ import liudrcx.algo.tree.TreeNode;
 import java.util.Stack;
 
 /**
+ * https://leetcode.com/problems/range-sum-of-bst/description/
  *
+ * Given the root node of a binary search tree and two integers low and high, return the sum of values of all nodes with a value in the inclusive range [low, high].
  */
 public class Range_Sum_of_BST_938 {
 
@@ -74,4 +76,18 @@ public class Range_Sum_of_BST_938 {
       return sum;
     }
   }
+
+  class Solution3 {
+
+    public int rangeSumBST(TreeNode root, int low, int high) {
+      if (root == null) {
+        return 0;
+      }
+
+      int leftSum = rangeSumBST(root.left, low, high);
+      int currVal = root.val >= low && root.val <= high ? root.val : 0;
+      return leftSum + currVal + rangeSumBST(root.right,low, high);
+    }
+  }
+
 }
