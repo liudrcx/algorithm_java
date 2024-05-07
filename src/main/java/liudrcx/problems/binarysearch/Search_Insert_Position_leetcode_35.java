@@ -1,4 +1,4 @@
-package liudrcx.algorithm.binarysearch.problems;
+package liudrcx.problems.binarysearch;
 
 /**
  * https://leetcode.com/problems/search-insert-position/description/
