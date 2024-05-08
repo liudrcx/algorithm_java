@@ -32,7 +32,7 @@ public class DynamicArray<E> implements DsList<E> {
   @Override
   public void add(int index, E e) {
     if (index < 0 || index > size) {
-      throw new IllegalArgumentException(invalidIndex(index));
+      throw invalidIndex(index);
     }
 
     checkAndExtendCapacity();
@@ -58,7 +58,7 @@ public class DynamicArray<E> implements DsList<E> {
   @Override
   public E remove(int index) {
     if (index < 0 || index >= size) {
-      throw new IllegalArgumentException(invalidIndex(index));
+      throw invalidIndex(index);
     }
 
     E removedElement = data[index];
@@ -72,11 +72,31 @@ public class DynamicArray<E> implements DsList<E> {
   }
 
   @Override
+  public int removeByValue(E e) {
+    int index = findByValue(e);
+    if (index < 0) {
+      return index;
+    }
+    remove(index);
+    return index;
+  }
+
+  @Override
   public E get(int index) {
     if (index < 0 || index >= size) {
-      throw new IllegalArgumentException(invalidIndex(index));
+      throw invalidIndex(index);
     }
     return data[index];
+  }
+
+  @Override
+  public int findByValue(E e) {
+    for (int i = 0; i < size; i++) {
+      if (data[i].equals(e)) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   private void checkAndExtendCapacity() {
@@ -88,8 +108,8 @@ public class DynamicArray<E> implements DsList<E> {
     }
   }
 
-  private String invalidIndex(int index) {
-    return String.format("Invalid index: %s", index);
+  private IllegalArgumentException invalidIndex(int index) {
+    return new IllegalArgumentException(String.format("Invalid index: %s", index));
   }
 
   @Override

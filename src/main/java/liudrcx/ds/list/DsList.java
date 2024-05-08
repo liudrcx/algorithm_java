@@ -14,7 +14,19 @@ public interface DsList<E> extends Iterable<E>{
 
   E remove(int index);
 
+  /**
+   * @param e
+   * @return index of given element, return -1 if element not exists
+   */
+  int removeByValue(E e);
+
   E get(int index);
+
+  /**
+   * @param e
+   * @return index of given element, return -1 if element not exists
+   */
+  int findByValue(E e);
 
   int size();
 }
