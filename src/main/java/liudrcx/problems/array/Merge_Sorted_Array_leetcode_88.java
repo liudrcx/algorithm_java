@@ -1,4 +1,4 @@
-package liudrcx.ds.list.array;
+package liudrcx.problems.array;
 
 /**
  * https://leetcode.com/problems/merge-sorted-array/description/

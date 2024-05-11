@@ -1,17 +1,18 @@
-package liudrcx.algo.array;
+package liudrcx.ds.list.array;
 
-import liudrcx.ds.list.array.DynamicArray;
+import liudrcx.ds.list.DsList;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 public class DynamicArrayTest {
 
   @Test
   public void testAdd() {
-    DynamicArray dynamicArray = new DynamicArray();
+    DsList<Integer> dynamicArray = new DynamicArray();
     dynamicArray.addLast(1);
     dynamicArray.addLast(2);
     dynamicArray.addLast(3);
@@ -19,30 +20,25 @@ public class DynamicArrayTest {
     dynamicArray.add(2, 5);
     dynamicArray.addFirst(6);
 
-    //6, 1, 2, 5, 3, 4
-    assertThat(dynamicArray.stream())
-        .hasSameElementsAs(List.of(6, 1, 2, 5, 3, 4));
-
-    assertThat(dynamicArray.size()).isEqualTo(6);
+    assertIterableEquals(List.of(6, 1, 2, 5, 3, 4), dynamicArray);
+    assertEquals(6, dynamicArray.size());
   }
 
   @Test
   public void testGrowArray() {
-    DynamicArray dynamicArray = new DynamicArray(3);
+    DsList<Integer> dynamicArray = new DynamicArray(3);
     dynamicArray.addLast(1);
     dynamicArray.addLast(2);
     dynamicArray.addLast(3);
     dynamicArray.addLast(4);
 
-    assertThat(dynamicArray.stream())
-        .hasSameElementsAs(List.of(1, 2, 3, 4));
-
-    assertThat(dynamicArray.size()).isEqualTo(4);
+    assertIterableEquals(List.of(1, 2, 3, 4), dynamicArray);
+    assertEquals(4, dynamicArray.size());
   }
 
   @Test
   public void testRemove() {
-    DynamicArray dynamicArray = new DynamicArray(3);
+    DsList<Integer> dynamicArray = new DynamicArray(3);
     dynamicArray.addLast(1);
     dynamicArray.addLast(2);
     dynamicArray.addLast(3);
@@ -51,15 +47,13 @@ public class DynamicArrayTest {
     //1, 2, 4
     dynamicArray.remove(2);
 
-    assertThat(dynamicArray.stream())
-        .hasSameElementsAs(List.of(1, 2, 4));
-
-    assertThat(dynamicArray.size()).isEqualTo(3);
+    assertIterableEquals(List.of(1, 2, 4), dynamicArray);
+    assertEquals(3, dynamicArray.size());
   }
 
   @Test
   public void testRemoveFirst() {
-    DynamicArray dynamicArray = new DynamicArray(3);
+    DsList<Integer> dynamicArray = new DynamicArray(3);
     dynamicArray.addLast(1);
     dynamicArray.addLast(2);
     dynamicArray.addLast(3);
@@ -68,15 +62,14 @@ public class DynamicArrayTest {
     //2, 3, 4
     dynamicArray.removeFirst();
 
-    assertThat(dynamicArray.stream())
-      .hasSameElementsAs(List.of(2, 3, 4));
 
-    assertThat(dynamicArray.size()).isEqualTo(3);
+    assertIterableEquals(List.of(2, 3, 4), dynamicArray);
+    assertEquals(3, dynamicArray.size());
   }
 
   @Test
   public void testRemoveLast() {
-    DynamicArray dynamicArray = new DynamicArray(3);
+    DsList<Integer> dynamicArray = new DynamicArray(3);
     dynamicArray.addLast(1);
     dynamicArray.addLast(2);
     dynamicArray.addLast(3);
@@ -85,9 +78,7 @@ public class DynamicArrayTest {
     //1, 2, 3
     dynamicArray.removeLast();
 
-    assertThat(dynamicArray.stream())
-      .hasSameElementsAs(List.of(1, 2, 3));
-
-    assertThat(dynamicArray.size()).isEqualTo(3);
+    assertIterableEquals(List.of(1, 2, 3), dynamicArray);
+    assertEquals(3, dynamicArray.size());
   }
 }

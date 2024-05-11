@@ -1,16 +1,19 @@
-package liudrcx.algo.array;
+package liudrcx.ds.list.array;
+
+import liudrcx.ds.list.DsList;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.stream.Stream;
 
-public class DynamicArray<T> {
+public class DynamicArray<T> implements DsList<T> {
 
   private T[] data;
   private int size = 0;
   private int capacity = 0;
 
   public DynamicArray() {
-    this(10);
+    this(15);
   }
 
   public DynamicArray(int capacity) {
@@ -18,6 +21,7 @@ public class DynamicArray<T> {
     this.data = (T[]) new Object[capacity];
   }
 
+  @Override
   public void add(int index, T e) {
     if (index < 0 || index > size) {
       throw new IllegalArgumentException("Invalid index: " + index);
@@ -86,4 +90,21 @@ public class DynamicArray<T> {
     return Arrays.stream(Arrays.copyOfRange(data, 0, size));
   }
 
+  @Override
+  public Iterator<T> iterator() {
+    return new Iterator<T>() {
+
+      int index = 0;
+
+      @Override
+      public boolean hasNext() {
+        return index < size;
+      }
+
+      @Override
+      public T next() {
+        return data[index++];
+      }
+    };
+  }
 }
