@@ -1,4 +1,4 @@
-package liudrcx.algo.linkedlist.leetcode;
+package liudrcx.problems.linkedlist;
 
 /**
  * https://leetcode.com/problems/remove-nth-node-from-end-of-list/

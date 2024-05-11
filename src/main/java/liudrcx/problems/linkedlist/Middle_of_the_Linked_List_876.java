@@ -1,6 +1,4 @@
-package liudrcx.algo.linkedlist.leetcode;
-
-import java.util.List;
+package liudrcx.problems.linkedlist;
 
 /**
  * https://leetcode.com/problems/middle-of-the-linked-list/

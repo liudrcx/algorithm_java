@@ -1,35 +1,33 @@
-package liudrcx.algo.linkedlist;
+package liudrcx.ds.list.linkedlist;
+
+import liudrcx.ds.list.DsList;
 
 import java.util.Iterator;
 
-public class DoublyLinkedList<T> implements LinkedList<T>{
+public class DoublyCycleLinkedList<T> implements DsList<T> {
 
   private int size = 0;
 
-  private Node head;
+  private Node dummy;
 
-  private Node tail;
-
-  public DoublyLinkedList() {
-    head = new Node(null);
-    tail = new Node(null);
-    head.next = tail;
-    tail.prev = head;
-    size = 0;
+  public DoublyCycleLinkedList() {
+    dummy = new Node(null);
+    dummy.next = dummy;
+    dummy.prev = dummy;
   }
 
   private Node find(int index) {
     int i = -1;
-    Node p = head;
-    while(p != tail) {
-      if (i == index) {
+    Node p = dummy;
+    while(p.next != dummy) {
+      if (index == i) {
         return p;
       }
 
       i++;
       p = p.next;
     }
-    return null;
+    return p;
   }
 
   @Override
@@ -68,11 +66,10 @@ public class DoublyLinkedList<T> implements LinkedList<T>{
     Node p = find(index - 1);
     Node node = p.next;
     Node next = node.next;
-
     p.next = next;
     next.prev = p;
-    size--;
 
+    size--;
     return node.e;
   }
 
@@ -91,9 +88,7 @@ public class DoublyLinkedList<T> implements LinkedList<T>{
     if (index < 0 || index >= size) {
       throw new IllegalArgumentException("Invalid index: " + index);
     }
-
-    Node node = find(index);
-    return node.e;
+    return find(index).e;
   }
 
   @Override
@@ -105,27 +100,26 @@ public class DoublyLinkedList<T> implements LinkedList<T>{
   public Iterator<T> iterator() {
     return new Iterator<T>() {
 
-      Node p = head.next;
+      Node p = dummy.next;
 
       @Override
       public boolean hasNext() {
-        return p != tail;
+        return p != dummy;
       }
 
       @Override
       public T next() {
-        T e = p.e;
+        Node node = p;
         p = p.next;
-        return e;
+        return node.e;
       }
     };
   }
 
   class Node {
     private T e;
-    private Node next;
-
     private Node prev;
+    private Node next;
 
     public Node(T e) {
       this.e = e;

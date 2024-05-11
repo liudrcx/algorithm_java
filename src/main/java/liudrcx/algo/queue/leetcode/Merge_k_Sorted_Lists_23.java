@@ -1,6 +1,6 @@
 package liudrcx.algo.queue.leetcode;
 
-import liudrcx.algo.linkedlist.leetcode.ListNode;
+import liudrcx.problems.linkedlist.ListNode;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

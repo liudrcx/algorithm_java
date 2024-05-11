@@ -1,15 +1,37 @@
-package liudrcx.algo.linkedlist;
+package liudrcx.ds.list.linkedlist;
+
+import liudrcx.ds.list.DsList;
 
 import java.util.Iterator;
 
-public class SinglyLinkedList<T> implements LinkedList<T>{
+public class DoublyLinkedList<T> implements DsList<T> {
 
   private int size = 0;
 
   private Node head;
 
-  public SinglyLinkedList() {
+  private Node tail;
+
+  public DoublyLinkedList() {
     head = new Node(null);
+    tail = new Node(null);
+    head.next = tail;
+    tail.prev = head;
+    size = 0;
+  }
+
+  private Node find(int index) {
+    int i = -1;
+    Node p = head;
+    while(p != tail) {
+      if (i == index) {
+        return p;
+      }
+
+      i++;
+      p = p.next;
+    }
+    return null;
   }
 
   @Override
@@ -19,7 +41,7 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
 
   @Override
   public void addLast(T e) {
-   add(size, e);
+    add(size, e);
   }
 
   @Override
@@ -29,11 +51,13 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
     }
 
     Node p = find(index - 1);
-
     Node next = p.next;
     Node node = new Node(e);
+
     node.next = next;
+    node.prev = p;
     p.next = node;
+    next.prev = node;
     size++;
   }
 
@@ -46,8 +70,11 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
     Node p = find(index - 1);
     Node node = p.next;
     Node next = node.next;
+
     p.next = next;
+    next.prev = p;
     size--;
+
     return node.e;
   }
 
@@ -67,8 +94,8 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
       throw new IllegalArgumentException("Invalid index: " + index);
     }
 
-    Node p = find(index);
-    return p.e;
+    Node node = find(index);
+    return node.e;
   }
 
   @Override
@@ -76,28 +103,15 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
     return size;
   }
 
-  private Node find(int index) {
-    int i = -1;
-    Node p = head;
-    while(p != null) {
-      if (i == index) {
-        return p;
-      }
-
-      i++;
-      p = p.next;
-    }
-    return null;
-  }
-
   @Override
   public Iterator<T> iterator() {
     return new Iterator<T>() {
+
       Node p = head.next;
 
       @Override
       public boolean hasNext() {
-        return p != null;
+        return p != tail;
       }
 
       @Override
@@ -112,6 +126,8 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
   class Node {
     private T e;
     private Node next;
+
+    private Node prev;
 
     public Node(T e) {
       this.e = e;

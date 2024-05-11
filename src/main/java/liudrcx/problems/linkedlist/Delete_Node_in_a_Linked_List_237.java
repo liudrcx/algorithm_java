@@ -1,4 +1,4 @@
-package liudrcx.algo.linkedlist.leetcode;
+package liudrcx.problems.linkedlist;
 
 /**
  * https://leetcode.com/problems/delete-node-in-a-linked-list/

@@ -1,4 +1,4 @@
-package liudrcx.algo.linkedlist;
+package liudrcx.problems.linkedlist;
 
 public class LRUCache<K, V> {
 

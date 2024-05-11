@@ -1,4 +1,4 @@
-package liudrcx.algo.linkedlist.leetcode;
+package liudrcx.problems.linkedlist;
 
 public class ListNode {
   public int val;

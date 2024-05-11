@@ -1,16 +1,19 @@
-package liudrcx.algo.linkedlist;
+package liudrcx.ds.list.linkedlist;
 
+import liudrcx.ds.list.DsList;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DoublyLinkedListTest {
+public class DoublyCycleLinkedListTest {
 
   @Test
   public void testAddFirst() {
-    DoublyLinkedList list = new DoublyLinkedList();
+    DsList<Integer> list = new DoublyCycleLinkedList();
     list.addFirst(1);
     list.addFirst(2);
     list.addFirst(3);
@@ -21,7 +24,7 @@ public class DoublyLinkedListTest {
 
   @Test
   public void testAddLst() {
-    DoublyLinkedList list = new DoublyLinkedList();
+    DsList<Integer> list = new DoublyCycleLinkedList();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);
@@ -33,7 +36,7 @@ public class DoublyLinkedListTest {
 
   @Test
   public void testAdd() {
-    DoublyLinkedList list = getLinkedList();
+    DsList<Integer> list = getLinkedList();
 
     list.add(0, 5);
     assertIterableEquals(List.of(5, 1, 2, 3, 4), list);
@@ -48,25 +51,25 @@ public class DoublyLinkedListTest {
 
     assertThrows(IllegalArgumentException.class,
         () -> {
-          DoublyLinkedList linkedList = getLinkedList();
+          DsList<Integer> linkedList = getLinkedList();
           linkedList.add(5, 5);
         });
   }
 
   @Test
   public void testRemove() {
-    DoublyLinkedList list = getLinkedList();
+    DsList<Integer> list = getLinkedList();
     list.remove(2);
     assertIterableEquals(List.of(1, 2, 4), list);
     assertThrows(IllegalArgumentException.class, () -> list.remove(10));
 
-    DoublyLinkedList list2 = new DoublyLinkedList();
+    DsList<Integer> list2 = new DoublyCycleLinkedList();
     assertThrows(IllegalArgumentException.class, () -> list2.remove(0));
   }
 
   @Test
   public void testRemoveFirst() {
-    DoublyLinkedList list = getLinkedList();
+    DsList<Integer> list = getLinkedList();
     list.removeFirst();
     assertIterableEquals(List.of(2, 3, 4), list);
     list.removeFirst();
@@ -80,7 +83,7 @@ public class DoublyLinkedListTest {
 
   @Test
   public void testRemoveLast() {
-    DoublyLinkedList list = getLinkedList();
+    DsList<Integer> list = getLinkedList();
     list.removeLast();
     assertIterableEquals(List.of(1, 2, 3), list);
     list.removeLast();
@@ -92,8 +95,8 @@ public class DoublyLinkedListTest {
     assertThrows(IllegalArgumentException.class, list::removeLast);
   }
 
-  private DoublyLinkedList getLinkedList() {
-    DoublyLinkedList list = new DoublyLinkedList();
+  private DsList<Integer> getLinkedList() {
+    DsList<Integer> list = new DoublyCycleLinkedList();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);

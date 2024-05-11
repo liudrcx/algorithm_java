@@ -1,6 +1,6 @@
-package liudrcx.algo.linkedlist;
+package liudrcx.ds.list.linkedlist;
 
-import org.junit.jupiter.api.Assertions;
+import liudrcx.problems.linkedlist.JosephusProblem;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

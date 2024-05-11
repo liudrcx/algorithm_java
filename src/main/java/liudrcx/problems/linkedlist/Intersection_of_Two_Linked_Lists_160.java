@@ -1,4 +1,4 @@
-package liudrcx.algo.linkedlist.leetcode;
+package liudrcx.problems.linkedlist;
 
 /**
  * https://leetcode.com/problems/intersection-of-two-linked-lists/

@@ -1,6 +1,7 @@
-package liudrcx.algo.linkedlist;
+package liudrcx.ds.list.linkedlist;
 
 
+import liudrcx.problems.linkedlist.LRUCache;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

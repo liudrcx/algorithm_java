@@ -1,6 +1,4 @@
-package liudrcx.algo.linkedlist.leetcode;
-
-import javax.swing.*;
+package liudrcx.problems.linkedlist;
 
 /**
  * https://leetcode.com/problems/palindrome-linked-list/

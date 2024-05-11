@@ -1,9 +1,9 @@
-package liudrcx.algo.linkedlist.leetcode;
+package liudrcx.problems.linkedlist;
 
 /**
- * https://leetcode.com/problems/linked-list-cycle/
+ * https://leetcode.com/problems/linked-list-cycle-ii/
  */
-public class Linked_List_Cycle_141 {
+public class Linked_List_Cycle_II_142 {
 
   /**
    * Definition for singly-linked list.
@@ -16,20 +16,24 @@ public class Linked_List_Cycle_141 {
    *     }
    * }
    */
-  public class Solution1 {
-    public boolean hasCycle(ListNode head) {
+  public class Solution {
+    public ListNode detectCycle(ListNode head) {
       ListNode t = head, r = head;
-
       while(r != null && r.next != null) {
         t = t.next;
         r = r.next.next;
 
-        if (t == r) {
-          return true;
+        if (r == t) {
+          t = head;
+          while(t != r) {
+            t = t.next;
+            r = r.next;
+          }
+          return t;
         }
       }
 
-      return false;
+      return null;
     }
   }
 }
