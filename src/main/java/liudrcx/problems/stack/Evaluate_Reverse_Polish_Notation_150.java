@@ -1,4 +1,4 @@
-package liudrcx.algo.stack.leetcode;
+package liudrcx.problems.stack;
 
 import java.util.Stack;
 

@@ -1,16 +1,19 @@
-package liudrcx.algo.stack;
+package liudrcx.ds.stack;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class LinkedListStackTest {
+public class ArrayStackTest {
 
   @Test
   public void push() {
-    LinkedListStack<Object> stack = new LinkedListStack<>(3);
+    Stack<Integer> stack = new ArrayStack<>(3);
     stack.push(1);
     stack.push(2);
     stack.push(3);
@@ -21,7 +24,7 @@ public class LinkedListStackTest {
 
   @Test
   public void pop() {
-    LinkedListStack<Object> stack = new LinkedListStack<>(3);
+    Stack<Integer> stack = new ArrayStack<>(3);
     stack.push(1);
     stack.push(2);
     stack.push(3);

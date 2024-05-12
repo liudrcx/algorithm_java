@@ -1,8 +1,8 @@
-package liudrcx.algo.stack;
+package liudrcx.ds.stack;
 
 import java.util.Iterator;
 
-public class LinkedListStack<E> implements Stack<E>, Iterable<E>{
+public class LinkedListStack<E> implements Stack<E> {
 
   private int capacity;
   private int size = 0;

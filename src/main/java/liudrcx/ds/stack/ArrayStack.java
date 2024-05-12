@@ -1,8 +1,8 @@
-package liudrcx.algo.stack;
+package liudrcx.ds.stack;
 
 import java.util.Iterator;
 
-public class ArrayStack<E> implements Stack<E>, Iterable<E> {
+public class ArrayStack<E> implements Stack<E>{
 
   private E[] data;
   private int capacity;
@@ -14,23 +14,7 @@ public class ArrayStack<E> implements Stack<E>, Iterable<E> {
     this.data = (E[]) new Object[capacity];
   }
 
-  @Override
-  public Iterator<E> iterator() {
-    return new Iterator<E>() {
 
-      int p = top;
-
-      @Override
-      public boolean hasNext() {
-        return p > 0;
-      }
-
-      @Override
-      public E next() {
-        return data[--p];
-      }
-    };
-  }
 
   @Override
   public boolean push(E value) {
@@ -74,5 +58,23 @@ public class ArrayStack<E> implements Stack<E>, Iterable<E> {
   @Override
   public int size() {
     return size;
+  }
+
+
+  @Override
+  public Iterator<E> iterator() {
+    return new Iterator<E>() {
+      int p = top;
+
+      @Override
+      public boolean hasNext() {
+        return p > 0;
+      }
+
+      @Override
+      public E next() {
+        return data[--p];
+      }
+    };
   }
 }

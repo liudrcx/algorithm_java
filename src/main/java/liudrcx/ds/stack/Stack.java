@@ -1,6 +1,6 @@
-package liudrcx.algo.stack;
+package liudrcx.ds.stack;
 
-public interface Stack<E> {
+public interface Stack<E> extends Iterable<E>{
 
   boolean push(E value);
 
