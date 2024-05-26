@@ -1,4 +1,4 @@
-package liudrcx.algo.queue.leetcode;
+package liudrcx.problems.queue;
 
 
 import java.util.LinkedList;
