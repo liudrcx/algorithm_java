@@ -26,6 +26,7 @@ public class Binary_Tree_Preorder_Traversal_144 {
    *     }
    * }
    */
+
   class Solution1 {
     public List<Integer> preorderTraversal(TreeNode root) {
       List<Integer> result = new ArrayList<>();
