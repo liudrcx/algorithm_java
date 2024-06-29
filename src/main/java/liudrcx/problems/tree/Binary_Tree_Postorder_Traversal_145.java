@@ -1,4 +1,4 @@
-package liudrcx.algo.tree.leetcode;
+package liudrcx.problems.tree;
 
 import liudrcx.algo.tree.TreeNode;
 
@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * https://leetcode.com/problems/binary-tree-preorder-traversal/
+ * https://leetcode.com/problems/binary-tree-postorder-traversal/
  */
-public class Binary_Tree_Preorder_Traversal_144 {
+public class Binary_Tree_Postorder_Traversal_145 {
 
   /**
    * Definition for a binary tree node.
@@ -27,42 +27,44 @@ public class Binary_Tree_Preorder_Traversal_144 {
    * }
    */
   class Solution1 {
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode root) {
       List<Integer> result = new ArrayList<>();
       if (root == null) {
         return result;
       }
 
+      result.addAll(postorderTraversal(root.left));
+      result.addAll(postorderTraversal(root.right));
       result.add(root.val);
-      result.addAll(preorderTraversal(root.left));
-      result.addAll(preorderTraversal(root.right));
-
       return result;
     }
   }
 
   class Solution2 {
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode root) {
       List<Integer> result = new ArrayList<>();
       if (root == null) {
         return result;
       }
 
       TreeNode curr = root;
+      TreeNode pop = null;
       Stack<TreeNode> stack = new Stack<>();
       while(curr != null || !stack.isEmpty()) {
         if (curr != null) {
-          result.add(curr.val);
           stack.push(curr);
           curr = curr.left;
         } else {
-          TreeNode p = stack.pop();
-          curr = p.right;
+          TreeNode peek = stack.peek();
+          if (peek.right == null || peek.right == pop) {
+            pop = stack.pop();
+            result.add(pop.val);
+          } else {
+            curr = peek.right;
+          }
         }
       }
-
       return result;
     }
   }
-
 }
