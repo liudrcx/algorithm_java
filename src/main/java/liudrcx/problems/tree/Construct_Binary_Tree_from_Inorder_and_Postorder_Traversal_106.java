@@ -1,4 +1,4 @@
-package liudrcx.algo.tree.leetcode;
+package liudrcx.problems.tree;
 
 import liudrcx.algo.tree.TreeNode;
 

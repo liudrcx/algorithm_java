@@ -1,4 +1,4 @@
-package liudrcx.algo.tree.leetcode;
+package liudrcx.problems.tree;
 
 import java.util.ArrayList;
 import java.util.List;

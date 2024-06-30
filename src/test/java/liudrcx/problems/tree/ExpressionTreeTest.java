@@ -1,10 +1,9 @@
-package liudrcx.algo.tree;
+package liudrcx.problems.tree;
 
-import liudrcx.algo.tree.leetcode.ExpressionTree;
 import org.junit.jupiter.api.Test;
 
-import static liudrcx.algo.tree.leetcode.ExpressionTree.constructExpressionTree;
-import static liudrcx.algo.tree.leetcode.ExpressionTree.postTraverse;
+import static liudrcx.problems.tree.ExpressionTree.constructExpressionTree;
+import static liudrcx.problems.tree.ExpressionTree.postTraverse;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class ExpressionTreeTest {
