@@ -1,6 +1,7 @@
-package liudrcx.ds.list.array;
+package aliu.ds.list.array;
 
-import liudrcx.ds.list.DsList;
+
+import aliu.ds.list.DsList;
 
 import java.util.Arrays;
 import java.util.Iterator;
