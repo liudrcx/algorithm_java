@@ -1,7 +1,9 @@
-package liudrcx.problems.linkedlist;
+package aliu.problems.ds.linkedlist;
 
 /**
  * https://leetcode.com/problems/linked-list-cycle-ii/
+ *
+ * Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
  */
 public class Linked_List_Cycle_II_142 {
 

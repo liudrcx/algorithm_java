@@ -1,9 +1,12 @@
-package liudrcx.problems.linkedlist;
+package aliu.problems.ds.linkedlist;
 
 /**
- * https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+ * https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+ *
+ * Given the head of a sorted linked list, delete all duplicates such that each element appears only once.
+ * Return the linked list sorted as well.
  */
-public class Remove_Duplicates_from_Sorted_List_II_82 {
+public class Remove_Duplicates_from_Sorted_List_83 {
 
   /**
    * Definition for singly-linked list.
@@ -22,11 +25,7 @@ public class Remove_Duplicates_from_Sorted_List_II_82 {
       }
 
       if (head.val == head.next.val) {
-        ListNode p = head.next;
-        while(p != null && p.val == head.val) {
-          p = p.next;
-        }
-        return deleteDuplicates(p);
+        return deleteDuplicates(head.next);
       } else {
         head.next = deleteDuplicates(head.next);
         return head;
@@ -40,18 +39,17 @@ public class Remove_Duplicates_from_Sorted_List_II_82 {
         return head;
       }
 
-      ListNode dummy = new ListNode(-1, head);
-      ListNode p1 = dummy, p2, p3;
-      while((p2 = p1.next) != null && (p3 = p2.next) != null) {
-        if (p2.val == p3.val) {
-          while((p3 = p3.next) != null && p3.val == p2.val) {}
-          p1.next = p3;
+      ListNode p1 = head, p2 = p1.next;
+      while(p2 != null) {
+        if (p1.val == p2.val) {
+          p1.next = p2.next;
         } else {
           p1 = p1.next;
         }
+        p2 = p2.next;
       }
 
-      return dummy.next;
+      return head;
     }
   }
 }

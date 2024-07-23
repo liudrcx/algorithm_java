@@ -1,7 +1,9 @@
-package liudrcx.problems.linkedlist;
+package aliu.problems.ds.linkedlist;
 
 /**
  * https://leetcode.com/problems/reverse-linked-list/
+ *
+ * Given the head of a singly linked list, reverse the list, and return the reversed list.
  */
 public class Reverse_Linked_List_206 {
 

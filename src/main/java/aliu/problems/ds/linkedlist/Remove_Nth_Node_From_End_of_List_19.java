@@ -1,7 +1,9 @@
-package liudrcx.problems.linkedlist;
+package aliu.problems.ds.linkedlist;
 
 /**
  * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+ *
+ * Given the head of a linked list, remove the nth node from the end of the list and return its head.
  */
 public class Remove_Nth_Node_From_End_of_List_19 {
 

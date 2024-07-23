@@ -1,4 +1,4 @@
-package liudrcx.problems.linkedlist;
+package aliu.problems.ds.linkedlist;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,11 @@
-package liudrcx.problems.linkedlist;
+package aliu.problems.ds.linkedlist;
 
 /**
  * https://leetcode.com/problems/linked-list-cycle/
+ *
+ * Given head, the head of a linked list, determine if the linked list has a cycle in it.
+ * Return true if there is a cycle in the linked list. Otherwise, return false.
+ *
  */
 public class Linked_List_Cycle_141 {
 

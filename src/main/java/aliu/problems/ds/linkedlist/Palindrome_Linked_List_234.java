@@ -1,7 +1,9 @@
-package liudrcx.problems.linkedlist;
+package aliu.problems.ds.linkedlist;
 
 /**
  * https://leetcode.com/problems/palindrome-linked-list/
+ *
+ * Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
  */
 public class Palindrome_Linked_List_234 {
 

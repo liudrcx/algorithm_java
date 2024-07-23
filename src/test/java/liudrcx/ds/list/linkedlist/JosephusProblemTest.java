@@ -1,6 +1,6 @@
 package liudrcx.ds.list.linkedlist;
 
-import liudrcx.problems.linkedlist.JosephusProblem;
+import aliu.problems.ds.linkedlist.JosephusProblem;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

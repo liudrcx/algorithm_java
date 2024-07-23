@@ -1,6 +1,6 @@
 package liudrcx.problems.queue;
 
-import liudrcx.problems.linkedlist.ListNode;
+import aliu.problems.ds.linkedlist.ListNode;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

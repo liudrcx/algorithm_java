@@ -1,7 +1,12 @@
-package liudrcx.problems.linkedlist;
+package aliu.problems.ds.linkedlist;
 
 /**
  * https://leetcode.com/problems/merge-k-sorted-lists/
+ *
+ * You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+ *
+ * Merge all the linked-lists into one sorted linked-list and return it.
+ *
  */
 public class Merge_k_Sorted_Lists_23 {
 
