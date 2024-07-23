@@ -1,6 +1,7 @@
-package liudrcx.ds.list.linkedlist;
+package aliu.ds.list.linkedlist;
 
-import liudrcx.ds.list.DsList;
+
+import aliu.ds.list.DsList;
 
 import java.util.Iterator;
 

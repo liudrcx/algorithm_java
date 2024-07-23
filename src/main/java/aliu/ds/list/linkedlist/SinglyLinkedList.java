@@ -1,33 +1,18 @@
-package liudrcx.ds.list.linkedlist;
+package aliu.ds.list.linkedlist;
 
-import liudrcx.ds.list.DsList;
+
+import aliu.ds.list.DsList;
 
 import java.util.Iterator;
 
-public class DoublyCycleLinkedList<T> implements DsList<T> {
+public class SinglyLinkedList<T> implements DsList<T> {
 
   private int size = 0;
 
-  private Node dummy;
+  private Node head;
 
-  public DoublyCycleLinkedList() {
-    dummy = new Node(null);
-    dummy.next = dummy;
-    dummy.prev = dummy;
-  }
-
-  private Node find(int index) {
-    int i = -1;
-    Node p = dummy;
-    while(p.next != dummy) {
-      if (index == i) {
-        return p;
-      }
-
-      i++;
-      p = p.next;
-    }
-    return p;
+  public SinglyLinkedList() {
+    head = new Node(null);
   }
 
   @Override
@@ -37,7 +22,7 @@ public class DoublyCycleLinkedList<T> implements DsList<T> {
 
   @Override
   public void addLast(T e) {
-    add(size, e);
+   add(size, e);
   }
 
   @Override
@@ -47,13 +32,11 @@ public class DoublyCycleLinkedList<T> implements DsList<T> {
     }
 
     Node p = find(index - 1);
+
     Node next = p.next;
     Node node = new Node(e);
-
     node.next = next;
-    node.prev = p;
     p.next = node;
-    next.prev = node;
     size++;
   }
 
@@ -67,8 +50,6 @@ public class DoublyCycleLinkedList<T> implements DsList<T> {
     Node node = p.next;
     Node next = node.next;
     p.next = next;
-    next.prev = p;
-
     size--;
     return node.e;
   }
@@ -88,7 +69,9 @@ public class DoublyCycleLinkedList<T> implements DsList<T> {
     if (index < 0 || index >= size) {
       throw new IllegalArgumentException("Invalid index: " + index);
     }
-    return find(index).e;
+
+    Node p = find(index);
+    return p.e;
   }
 
   @Override
@@ -96,29 +79,41 @@ public class DoublyCycleLinkedList<T> implements DsList<T> {
     return size;
   }
 
+  private Node find(int index) {
+    int i = -1;
+    Node p = head;
+    while(p != null) {
+      if (i == index) {
+        return p;
+      }
+
+      i++;
+      p = p.next;
+    }
+    return null;
+  }
+
   @Override
   public Iterator<T> iterator() {
     return new Iterator<T>() {
-
-      Node p = dummy.next;
+      Node p = head.next;
 
       @Override
       public boolean hasNext() {
-        return p != dummy;
+        return p != null;
       }
 
       @Override
       public T next() {
-        Node node = p;
+        T e = p.e;
         p = p.next;
-        return node.e;
+        return e;
       }
     };
   }
 
   class Node {
     private T e;
-    private Node prev;
     private Node next;
 
     public Node(T e) {

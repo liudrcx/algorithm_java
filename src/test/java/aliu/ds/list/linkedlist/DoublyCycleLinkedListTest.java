@@ -1,6 +1,6 @@
-package liudrcx.ds.list.linkedlist;
+package aliu.ds.list.linkedlist;
 
-import liudrcx.ds.list.DsList;
+import aliu.ds.list.DsList;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DoublyLinkedListTest {
+public class DoublyCycleLinkedListTest {
 
   @Test
   public void testAddFirst() {
-    DsList<Integer> list = new DoublyLinkedList();
+    DsList<Integer> list = new DoublyCycleLinkedList();
     list.addFirst(1);
     list.addFirst(2);
     list.addFirst(3);
@@ -24,7 +24,7 @@ public class DoublyLinkedListTest {
 
   @Test
   public void testAddLst() {
-    DsList<Integer> list = new DoublyLinkedList();
+    DsList<Integer> list = new DoublyCycleLinkedList();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);
@@ -63,7 +63,7 @@ public class DoublyLinkedListTest {
     assertIterableEquals(List.of(1, 2, 4), list);
     assertThrows(IllegalArgumentException.class, () -> list.remove(10));
 
-    DsList<Integer> list2 = new DoublyLinkedList();
+    DsList<Integer> list2 = new DoublyCycleLinkedList();
     assertThrows(IllegalArgumentException.class, () -> list2.remove(0));
   }
 
@@ -96,7 +96,7 @@ public class DoublyLinkedListTest {
   }
 
   private DsList<Integer> getLinkedList() {
-    DsList<Integer> list = new DoublyLinkedList();
+    DsList<Integer> list = new DoublyCycleLinkedList();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);
