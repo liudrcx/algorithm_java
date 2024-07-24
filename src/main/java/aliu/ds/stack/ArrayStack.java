@@ -1,4 +1,4 @@
-package aliu.problems.ds.stack;
+package aliu.ds.stack;
 
 import java.util.Iterator;
 

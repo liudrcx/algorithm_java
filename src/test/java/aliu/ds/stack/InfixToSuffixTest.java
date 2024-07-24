@@ -1,7 +1,7 @@
-package liudrcx.ds.stack;
+package aliu.ds.stack;
 
 
-import liudrcx.problems.stack.InfixToSuffix;
+import aliu.problems.ds.stack.InfixToSuffix;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

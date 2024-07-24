@@ -1,4 +1,4 @@
-package liudrcx.problems.stack;
+package aliu.problems.ds.stack;
 
 import java.util.Stack;
 

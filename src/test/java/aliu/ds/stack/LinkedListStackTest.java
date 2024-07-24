@@ -1,7 +1,5 @@
 package aliu.ds.stack;
 
-import aliu.problems.ds.stack.LinkedListStack;
-import aliu.problems.ds.stack.Stack;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

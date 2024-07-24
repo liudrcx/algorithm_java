@@ -1,4 +1,4 @@
-package liudrcx.ds.list.linkedlist;
+package aliu.ds.list.linkedlist;
 
 
 import aliu.problems.ds.linkedlist.LRUCache;
