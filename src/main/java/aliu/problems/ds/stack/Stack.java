@@ -1,4 +1,4 @@
-package liudrcx.ds.stack;
+package aliu.problems.ds.stack;
 
 public interface Stack<E> extends Iterable<E>{
 

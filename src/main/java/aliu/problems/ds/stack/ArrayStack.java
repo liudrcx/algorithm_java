@@ -1,8 +1,8 @@
-package liudrcx.ds.stack;
+package aliu.problems.ds.stack;
 
 import java.util.Iterator;
 
-public class ArrayStack<E> implements Stack<E>{
+public class ArrayStack<E> implements Stack<E> {
 
   private E[] data;
   private int capacity;
