@@ -1,4 +1,4 @@
-package liudrcx.algo.sorting;
+package aliu.algo.sorting;
 public class InsertionSort {
 
   public void sort(int[] arr) {

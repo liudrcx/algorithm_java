@@ -1,4 +1,4 @@
-package liudrcx.algo.sorting;
+package aliu.algo.sorting;
 public class BubbleSort {
 
   public void sort1(int[] arr) {
