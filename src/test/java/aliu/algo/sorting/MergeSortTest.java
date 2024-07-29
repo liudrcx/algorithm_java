@@ -1,5 +1,6 @@
-package liudrcx.algo.sorting;
+package aliu.algo.sorting;
 
+import aliu.algo.sorting.MergeSort;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

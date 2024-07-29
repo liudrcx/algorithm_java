@@ -1,4 +1,4 @@
-package liudrcx.algo.sorting;
+package aliu.algo.sorting;
 public class KthSmallest {
 
   public static int kthSmallest(int[] arr, int k) {

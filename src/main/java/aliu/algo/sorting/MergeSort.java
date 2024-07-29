@@ -1,4 +1,4 @@
-package liudrcx.algo.sorting;
+package aliu.algo.sorting;
 public class MergeSort {
 
   public void sort(int[] arr) {
