@@ -16,7 +16,7 @@ public class DynamicArray<E> implements ListDs<E>{
   }
 
   public DynamicArray() {
-    this(15);
+    this(16);
   }
 
   @Override
