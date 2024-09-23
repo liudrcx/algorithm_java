@@ -1,7 +1,6 @@
 package algoritm.list;
 
-import algorithm.list.DynamicArray;
-import org.junit.jupiter.api.Assertions;
+import algorithm.list.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DynamicArrayTest {
+public class SinglyLinkedListTest {
 
   @Test
   public void testAdd() {
-    DynamicArray list = new DynamicArray();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
     list.add(0, 1);
     list.add(1, 2);
     list.add(2, 3);
@@ -27,20 +26,8 @@ public class DynamicArrayTest {
   }
 
   @Test
-  public void testAddGrow() {
-    DynamicArray list = new DynamicArray(3);
-    list.add(0, 1);
-    list.add(1, 2);
-    list.add(2, 3);
-    list.add(0, 4);
-
-    assertIterableEquals(List.of(4, 1, 2, 3), list);
-    assertEquals(4, list.size());
-  }
-
-  @Test
   public void testInvalidIndexAdd() {
-    DynamicArray list = new DynamicArray();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
     list.add(0, 1);
 
     assertThrows(IllegalArgumentException.class, () -> list.add(-1, 10));
@@ -49,7 +36,7 @@ public class DynamicArrayTest {
 
   @Test
   public void testAddFirst() {
-    DynamicArray list = new DynamicArray();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
     list.addFirst(1);
     list.addFirst(2);
     list.addFirst(3);
@@ -61,7 +48,7 @@ public class DynamicArrayTest {
 
   @Test
   public void testAddLast() {
-    DynamicArray list = new DynamicArray();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);
@@ -73,7 +60,7 @@ public class DynamicArrayTest {
 
   @Test
   public void testRemove() {
-    DynamicArray<Integer> list = new DynamicArray();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);
@@ -86,7 +73,7 @@ public class DynamicArrayTest {
 
   @Test
   public void testInvalidIndexRemove() {
-    DynamicArray list = new DynamicArray();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
     list.add(0, 1);
 
     assertThrows(IllegalArgumentException.class, () -> list.remove(-1));
@@ -95,7 +82,7 @@ public class DynamicArrayTest {
 
   @Test
   public void testRemoveLast() {
-    DynamicArray<Integer> list = new DynamicArray();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);
@@ -108,7 +95,7 @@ public class DynamicArrayTest {
 
   @Test
   public void testRemoveFirst() {
-    DynamicArray<Integer> list = new DynamicArray();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);

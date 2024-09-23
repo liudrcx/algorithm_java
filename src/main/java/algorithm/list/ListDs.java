@@ -6,17 +6,8 @@ package algorithm.list;
  */
 public interface ListDs<E> extends Iterable<E>{
 
-  /**
-   *
-   * @param index
-   * @param e
-   */
   void add(int index, E e);
 
-  /**
-   *
-   * @param e
-   */
   void addFirst(E e);
 
   void addLast(E e);
