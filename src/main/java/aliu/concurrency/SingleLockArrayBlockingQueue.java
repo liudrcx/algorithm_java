@@ -1,4 +1,4 @@
-package aliu.ds.queue;
+package aliu.concurrency;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;

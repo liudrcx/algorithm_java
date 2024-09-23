@@ -1,4 +1,4 @@
-package aliu.ds.queue;
+package aliu.concurrency;
 
 public interface BlockingQueue<E> {
 
