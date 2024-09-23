@@ -2,21 +2,19 @@ package algorithm.list;
 
 import java.util.Iterator;
 
-public class DynamicArray<E> implements ListDs<E>{
+public class DoublyLinkedList<E> implements ListDs<E> {
 
-  private int capacity = 0;
+  private Node head;
+
+  private Node tail;
 
   private int size = 0;
 
-  private E[] data;
-
-  public DynamicArray(int capacity) {
-    this.capacity = capacity;
-    data = (E[]) new Object[capacity];
-  }
-
-  public DynamicArray() {
-    this(15);
+  public DoublyLinkedList() {
+    head = new Node(null);
+    tail = new Node(null);
+    head.next = tail;
+    tail.prev = head;
   }
 
   @Override
@@ -25,21 +23,16 @@ public class DynamicArray<E> implements ListDs<E>{
       throw new IllegalArgumentException("Invalid index: " + index);
     }
 
-    if (isFull()) {
-      growCapacity();
-    }
+    Node p = find(index - 1);
+    Node n = p.next;
+    Node c = new Node(e);
 
-    System.arraycopy(data, index, data, index + 1, size - index);
+    c.next = n;
+    c.prev = p;
+    p.next = c;
+    n.prev = c;
 
-    data[index] = e;
     size++;
-  }
-
-  private void growCapacity() {
-    capacity += capacity >>> 1;
-    E[] newData = (E[]) new Object[capacity];
-    System.arraycopy(data, 0, newData, 0, size);
-    data = newData;
   }
 
   @Override
@@ -49,7 +42,7 @@ public class DynamicArray<E> implements ListDs<E>{
 
   @Override
   public void addLast(E e) {
-    add(size, e);
+    add(size , e);
   }
 
   @Override
@@ -58,14 +51,15 @@ public class DynamicArray<E> implements ListDs<E>{
       throw new IllegalArgumentException("Invalid index: " + index);
     }
 
-    E e = data[index];
+    Node p = find(index - 1);
+    Node c = p.next;
+    Node n = c.next;
 
-    if (index < size - 1) {
-      System.arraycopy(data, index + 1, data, index , size - index - 1);
-    }
+    p.next = n;
+    n.prev = p;
 
     size--;
-    return e;
+    return c.e;
   }
 
   @Override
@@ -84,8 +78,8 @@ public class DynamicArray<E> implements ListDs<E>{
       throw new IllegalArgumentException("Invalid index: " + index);
     }
 
-    E e = data[index];
-    return e;
+    Node c = find(index);
+    return c.e;
   }
 
   @Override
@@ -100,26 +94,51 @@ public class DynamicArray<E> implements ListDs<E>{
 
   @Override
   public boolean isFull() {
-    return size == capacity;
+    return false;
+  }
+
+  private Node find(int index) {
+    int i = -1;
+    Node p = head;
+    while(p != tail) {
+      if (i == index) {
+        return p;
+      }
+      i++;
+      p = p.next;
+    }
+    return p;
   }
 
   @Override
   public Iterator<E> iterator() {
     return new Iterator<E>() {
 
-      int currentIndex = 0;
+      Node p = head.next;
 
       @Override
       public boolean hasNext() {
-        return currentIndex != size;
+        return p != tail;
       }
 
       @Override
       public E next() {
-        E e = data[currentIndex];
-        currentIndex++;
+        E e = p.e;
+        p = p.next;
         return e;
       }
     };
+  }
+
+  class Node {
+    E e;
+
+    Node next;
+
+    Node prev;
+
+    public Node(E e) {
+      this.e = e;
+    }
   }
 }

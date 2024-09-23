@@ -58,6 +58,16 @@ public class SinglyLinkedList<E> implements ListDs<E> {
   }
 
   @Override
+  public E get(int index) {
+    if (index < 0 || index >= size) {
+      throw new IllegalArgumentException("Invalid index: " + index);
+    }
+
+    Node node = find(index);
+    return node.e;
+  }
+
+  @Override
   public int size() {
     return size;
   }
@@ -82,7 +92,7 @@ public class SinglyLinkedList<E> implements ListDs<E> {
       i++;
       p = p.next;
     }
-    return null;
+    return p;
   }
 
   @Override

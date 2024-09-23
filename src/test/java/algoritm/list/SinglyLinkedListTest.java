@@ -105,4 +105,18 @@ public class SinglyLinkedListTest {
     assertIterableEquals(List.of(2, 3, 4), list);
     assertEquals(3, list.size());
   }
+
+  @Test
+  public void testGet() {
+    SinglyLinkedList<Integer> list = new SinglyLinkedList();
+    list.addLast(1);
+    list.addLast(2);
+    list.addLast(3);
+    list.addLast(4);
+
+    assertEquals(3, list.get(2));
+
+    assertThrows(IllegalArgumentException.class, () -> list.remove(-1));
+    assertThrows(IllegalArgumentException.class, () -> list.remove(4));
+  }
 }

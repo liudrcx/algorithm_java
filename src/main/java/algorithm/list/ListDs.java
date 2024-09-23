@@ -18,6 +18,8 @@ public interface ListDs<E> extends Iterable<E>{
 
   E removeLast();
 
+  E get(int index);
+
   int size();
 
   boolean isEmpty();
