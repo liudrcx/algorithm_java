@@ -1,6 +1,6 @@
-package aliu.algo.sorting;
+package algoritm.sorting;
 
-import aliu.algo.sorting.BubbleSort;
+import algorithm.sorting.BubbleSorting;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,7 +12,7 @@ public class BubbleSortTest {
     int[] expected = {1, 2, 3, 4, 5};
     int[] a1 = {5, 4, 3, 2, 1};
 
-    BubbleSort bubbleSort = new BubbleSort();
+    BubbleSorting bubbleSort = new BubbleSorting();
 
     bubbleSort.sort1(a1);
     assertThat(a1).containsExactly(expected);
@@ -35,7 +35,7 @@ public class BubbleSortTest {
     int[] expected = {1, 2, 3, 4, 5};
     int[] a1 = {5, 4, 3, 2, 1};
 
-    BubbleSort bubbleSort = new BubbleSort();
+    BubbleSorting bubbleSort = new BubbleSorting();
 
     bubbleSort.sort2(a1);
     assertThat(a1).containsExactly(expected);
@@ -50,29 +50,6 @@ public class BubbleSortTest {
 
     int[] a3 = {1, 2, 3, 4, 5};
     bubbleSort.sort2(a3);
-    assertThat(a3).containsExactly(expected);
-  }
-
-  @Test
-  public void testSortRecursion() {
-    BubbleSort bubbleSort = new BubbleSort();
-
-    int[] expected = {1, 2, 3, 4, 5};
-    int[] a1 = {5, 4, 3, 2, 1};
-
-    bubbleSort.sort_recursion(a1);
-    assertThat(a1).containsExactly(expected);
-
-    int[] a2 = {4, 5, 3, 2, 1};
-    bubbleSort.sort_recursion(a2);
-    assertThat(a2).containsExactly(expected);
-
-    int[] a4 = {3, 1, 4, 2, 5};
-    bubbleSort.sort_recursion(a4);
-    assertThat(a4).containsExactly(expected);
-
-    int[] a3 = {1, 2, 3, 4, 5};
-    bubbleSort.sort_recursion(a3);
     assertThat(a3).containsExactly(expected);
   }
 }
