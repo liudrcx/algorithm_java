@@ -1,7 +1,12 @@
-package aliu.algo.sorting;
-public class MergeSort {
+package algorithm.sorting;
+
+public class MergeSorting {
 
   public void sort(int[] arr) {
+    if (arr == null || arr.length ==0 || arr.length == 1) {
+      return;
+    }
+
     sort(arr, 0, arr.length - 1);
   }
 
@@ -11,6 +16,7 @@ public class MergeSort {
     }
 
     int q = (p + r) >>> 1;
+
     sort(arr, p, q);
     sort(arr, q + 1, r);
 
@@ -30,19 +36,19 @@ public class MergeSort {
       }
     }
 
-    int start = i;
-    int end = q;
+    int start = i, end = q;
     if (j <= r) {
       start = j;
       end = r;
     }
-
-    while (start <= end) {
-      tmp[k++] = arr[start++];
+    for (i = start; i <= end; i++) {
+      tmp[k++] = arr[i];
     }
 
     for(i = 0; i < r - p + 1; i++) {
       arr[p + i] = tmp[i];
     }
   }
+
+
 }
