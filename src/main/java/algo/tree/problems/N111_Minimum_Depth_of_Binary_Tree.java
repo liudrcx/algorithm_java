@@ -1,14 +1,18 @@
-package liudrcx.problems.tree;
+package algo.tree.problems;
 
-import liudrcx.algo.tree.TreeNode;
+import algo.tree.TreeNode;
 
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 /**
- * https://leetcode.com/problems/minimum-depth-of-binary-tree/
+ * https://leetcode.com/problems/minimum-depth-of-binary-tree/description/
+ *
+ * Given a binary tree, find its minimum depth.
+ * The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
  */
-public class Minimum_Depth_of_Binary_Tree_111 {
+public class N111_Minimum_Depth_of_Binary_Tree {
 
   /**
    * Definition for a binary tree node.
@@ -31,31 +35,43 @@ public class Minimum_Depth_of_Binary_Tree_111 {
         return 0;
       }
 
-      int d1 = minDepth(root.left);
-      int d2 = minDepth(root.right);
-      if (d1 == 0 || d2 == 0) {
-        return d1 + d2 + 1;
+      int leftDepth = minDepth(root.left);
+      int rightDepth = minDepth(root.right);
+
+      if (leftDepth == 0) {
+        return rightDepth + 1;
       }
-      return 1 + Integer.min(d1, d2);
+
+      if (rightDepth == 0) {
+        return leftDepth + 1;
+      }
+
+      return 1 + Integer.min(leftDepth, rightDepth);
     }
   }
 
+  /**
+   * using level iteration, the depth of first leaf node is the min depth
+   */
   class Solution2 {
     public int minDepth(TreeNode root) {
       if (root == null) {
         return 0;
       }
 
+      int minDepth = 0;
+
       Queue<TreeNode> queue = new LinkedList<>();
       queue.offer(root);
-      int depth = 0;
+
       while(!queue.isEmpty()) {
-        depth++;
+        minDepth++;
+
         int size = queue.size();
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
           TreeNode node = queue.poll();
           if (node.left == null && node.right == null) {
-            return depth;
+            return minDepth;
           }
 
           if (node.left != null) {
@@ -68,7 +84,7 @@ public class Minimum_Depth_of_Binary_Tree_111 {
         }
       }
 
-      return depth;
+      return minDepth;
     }
   }
 }

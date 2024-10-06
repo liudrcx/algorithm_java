@@ -1,11 +1,14 @@
-package liudrcx.problems.tree;
+package algo.tree.problems;
 
-import liudrcx.algo.tree.TreeNode;
+import algo.tree.TreeNode;
 
 /**
- * https://leetcode.com/problems/symmetric-tree/
+ * https://leetcode.com/problems/symmetric-tree/description/
+ *
+ * Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
  */
-public class Symmetric_Tree_101 {
+public class N101_Symmetric_Tree {
+
   /**
    * Definition for a binary tree node.
    * public class TreeNode {
@@ -23,10 +26,10 @@ public class Symmetric_Tree_101 {
    */
   class Solution {
     public boolean isSymmetric(TreeNode root) {
-      return check(root, root);
+      return isSymmetric(root, root);
     }
 
-    private boolean check(TreeNode left, TreeNode right) {
+    private boolean isSymmetric(TreeNode left, TreeNode right) {
       if (left == null && right == null) {
         return true;
       }
@@ -39,7 +42,7 @@ public class Symmetric_Tree_101 {
         return false;
       }
 
-      return check(left.left, right.right) && check(left.right, right.left);
+      return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
     }
   }
 }
