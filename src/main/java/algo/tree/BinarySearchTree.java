@@ -1,11 +1,11 @@
 package algo.tree;
 
-public class BinarySearchTree<K extends Comparable<K>> {
+public class BinarySearchTree<K extends Comparable<K>, V> {
 
-  BSTNode<K> root;
+  BSTNode<K, V> root;
 
-  public Object get(K key) {
-    BSTNode<K> currentNode = root;
+  public V get(K key) {
+    BSTNode<K, V> currentNode = root;
 
     while(currentNode != null) {
       if (key.compareTo(currentNode.key) < 0) {
@@ -20,44 +20,17 @@ public class BinarySearchTree<K extends Comparable<K>> {
     return null;
   }
 
-  public void put(K key, Object value) {
-    BSTNode<K> currentNode = root;
-    BSTNode<K> parentNode = null;
-
-    while(currentNode != null) {
-      parentNode = currentNode;
-
-      if (key.compareTo(currentNode.key) < 0) {
-        currentNode = currentNode.left;
-      } else if (currentNode.key.compareTo(key) < 0) {
-        currentNode = currentNode.right;
-      } else {
-        //key exists, update value
-        currentNode.value = value;
-        return;
-      }
-    }
-
-    //key doesn't exist in the tree
-    if (parentNode == null) { //empty tree
-      root = new BSTNode<>(key, value);
-    } else if (key.compareTo(parentNode.key) < 0) {
-      parentNode.left = new BSTNode(key, value);
-    } else {
-      parentNode.right = new BSTNode(key, value);
-    }
+  public V min() {
+    return min(root);
   }
 
-  public Object min() {
-    return _min(root);
-  }
-
-  private Object _min(BSTNode<K> parentNode) {
-    if (parentNode == null) {
+  private V min(BSTNode<K, V> node) {
+    if (node == null) {
       return null;
     }
 
-    BSTNode<K> currentNode = parentNode;
+    BSTNode<K, V> currentNode = node;
+
     while(currentNode.left != null) {
       currentNode = currentNode.left;
     }
@@ -65,16 +38,17 @@ public class BinarySearchTree<K extends Comparable<K>> {
     return currentNode.value;
   }
 
-  public Object max() {
-    return _max(root);
+  public V max() {
+    return max(root);
   }
 
-  private Object _max(BSTNode<K> parentNode) {
-    if (parentNode == null) {
+  public V max(BSTNode<K, V> node) {
+    if (node == null) {
       return null;
     }
 
-    BSTNode<K> currentNode = parentNode;
+    BSTNode<K, V> currentNode = node;
+
     while(currentNode.right != null) {
       currentNode = currentNode.right;
     }
@@ -82,63 +56,36 @@ public class BinarySearchTree<K extends Comparable<K>> {
     return currentNode.value;
   }
 
-  public Object predecessor(K key) {
-    BSTNode<K> currentNode = root;
-    BSTNode<K> lastNodeFromLeft = null;
+  public void put(K key, V value) {
+    BSTNode<K, V> currentNode = root;
+    BSTNode<K, V> parentNode = null;
 
     while(currentNode != null) {
+      parentNode = currentNode;
       if (key.compareTo(currentNode.key) < 0) {
-        currentNode = currentNode.left;
-      } else if (currentNode.key.compareTo(key) < 0) {
-        lastNodeFromLeft = currentNode;
-        currentNode = currentNode.right;
-      } else {
-        break;
-      }
-    }
-
-    if (currentNode == null) {
-      return null;
-    }
-
-    if (currentNode.left != null) {
-      return _max(currentNode.left);
-    }
-
-    return lastNodeFromLeft != null ? lastNodeFromLeft.value : null;
-  }
-
-  public Object successor(K key) {
-    BSTNode<K> currentNode = root;
-    BSTNode<K> lastNodeFromRight = null;
-
-    while(currentNode != null) {
-      if (key.compareTo(currentNode.key) < 0) {
-        lastNodeFromRight = currentNode;
         currentNode = currentNode.left;
       } else if (currentNode.key.compareTo(key) < 0) {
         currentNode = currentNode.right;
       } else {
-        break;
+        currentNode.value = value;
+        return;
       }
     }
 
-    if (currentNode == null) {
-      return null;
+    if (parentNode == null) {
+      root = new BSTNode<>(key, value);
+    } else if (key.compareTo(parentNode.key) < 0) {
+      parentNode.left = new BSTNode<>(key, value);
+    } else {
+      parentNode.right = new BSTNode<>(key, value);
     }
-
-    if (currentNode.right != null) {
-      return _min(currentNode.right);
-    }
-
-    return lastNodeFromRight != null ? lastNodeFromRight.value : null;
   }
 
-  boolean isSameTree(BinarySearchTree<K> target) {
-    return _isSame(root, target.root);
+  public boolean isSameTree(BinarySearchTree<K, V> targetTree) {
+    return _isSame(root, targetTree.root);
   }
 
-  private boolean _isSame(BSTNode<K> left, BSTNode<K> right) {
+  private boolean _isSame(BSTNode<K, V> left, BSTNode<K, V> right) {
     if (left == null && right == null) {
       return true;
     }
@@ -154,22 +101,23 @@ public class BinarySearchTree<K extends Comparable<K>> {
     return _isSame(left.left, right.left) && _isSame(left.right, right.right);
   }
 
-  static class BSTNode<K> {
+  static class BSTNode<K, V> {
 
     K key;
 
-    Object value;
+    V value;
 
-    BSTNode left;
+    BSTNode<K, V> left;
 
-    BSTNode right;
+    BSTNode<K, V> right;
 
-    public BSTNode(K key, Object value) {
+
+    public BSTNode(K key, V value) {
       this.key = key;
       this.value = value;
     }
 
-    public BSTNode(K key, Object value, BSTNode left, BSTNode right) {
+    public BSTNode(K key, V value, BSTNode<K, V> left, BSTNode<K, V> right) {
       this.key = key;
       this.value = value;
       this.left = left;
