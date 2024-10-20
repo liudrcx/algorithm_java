@@ -1,5 +1,12 @@
 package algo.tree;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
+import java.util.stream.Stream;
+
 public class BinarySearchTree<K extends Comparable<K>, V> {
 
   BSTNode<K, V> root;
@@ -186,6 +193,77 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
     } else {
       parent.right = child;
     }
+  }
+
+  public Stream<V> less(K key) {
+    List<V> result = new ArrayList<>();
+
+    BSTNode<K, V> currentNode = root;
+    Stack<BSTNode<K, V>> stack = new Stack<>();
+    while(currentNode != null || !stack.isEmpty()) {
+      if (currentNode != null) {
+        stack.push(currentNode);
+        currentNode = currentNode.left;
+      } else {
+        BSTNode<K, V> topNode = stack.pop();
+        if (topNode.key.compareTo(key) < 0) {
+          result.add(topNode.value);
+        } else {
+          break;
+        }
+        currentNode = topNode.right;
+      }
+    }
+
+    return result.stream();
+  }
+
+  public Stream<V> greater(K key) {
+    LinkedList<V> result = new LinkedList<>();
+
+    BSTNode<K, V> currentNode = root;
+    Stack<BSTNode<K, V>> stack = new Stack<>();
+    while(currentNode != null || !stack.isEmpty()) {
+      if (currentNode != null) {
+        stack.push(currentNode);
+        currentNode = currentNode.right;
+      } else {
+        BSTNode<K, V> topNode = stack.pop();
+        if (topNode.key.compareTo(key) > 0) {
+          result.addFirst(topNode.value);
+        } else {
+          break;
+        }
+        currentNode = topNode.left;
+      }
+    }
+    return result.stream();
+  }
+
+  public Stream<V> between(K lowKey, K highKey) {
+    List<V> result = new ArrayList<>();
+
+    BSTNode<K, V> currentNode = root;
+    Stack<BSTNode<K, V>> stack = new Stack<>();
+    while(currentNode != null || !stack.isEmpty()) {
+      if (currentNode != null) {
+        stack.push(currentNode);
+        currentNode = currentNode.left;
+      } else {
+        BSTNode<K, V> topNode = stack.pop();
+        if (topNode.key.compareTo(highKey) > 0) {
+          break;
+        }
+
+        if (topNode.key.compareTo(lowKey) >= 0) {
+          result.add(topNode.value);
+        }
+
+        currentNode = topNode.right;
+      }
+    }
+
+    return result.stream();
   }
 
   public boolean isSameTree(BinarySearchTree<K, V> targetTree) {
