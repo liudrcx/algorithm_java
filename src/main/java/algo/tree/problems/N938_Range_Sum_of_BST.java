@@ -78,4 +78,23 @@ public class N938_Range_Sum_of_BST {
         + rangeSumBST(root.right, low, high);
     }
   }
+
+  class Solution3 {
+    public int rangeSumBST(TreeNode root, int low, int high) {
+      if (root == null) {
+        return 0;
+      }
+
+      int leftSum = rangeSumBST(root.left, low, high);
+
+      int selfVal = 0;
+      if (root.val >= low && root.val <= high) {
+        selfVal += root.val;
+      }
+
+      int rightSum = rangeSumBST(root.right, low, high);
+
+      return leftSum + selfVal + rightSum;
+    }
+  }
 }
