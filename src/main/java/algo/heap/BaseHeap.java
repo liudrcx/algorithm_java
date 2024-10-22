@@ -115,7 +115,7 @@ public abstract class BaseHeap<E extends Comparable<E>> implements Heap<E>{
     while(childIndex > 0) {
       int parentIndex = (childIndex - 1) / 2;
       if (shouldUp(parentIndex, e)) {
-        swap(parentIndex, childIndex);
+        data[childIndex] = data[parentIndex];
         childIndex = parentIndex;
       } else {
         break;
