@@ -1,4 +1,4 @@
-package algo.tree.problems;
+package algo.tree.problems.leetcode;
 
 import algo.tree.TreeNode;
 

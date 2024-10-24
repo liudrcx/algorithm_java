@@ -1,4 +1,4 @@
-package algo.heap.problems;
+package algo.heap.problems.leetcode;
 
 /**
  * https://leetcode.com/problems/kth-largest-element-in-a-stream/description/

@@ -1,4 +1,4 @@
-package algo.heap.problems;
+package algo.heap.problems.leetcode;
 
 import java.util.PriorityQueue;
 

@@ -1,4 +1,4 @@
-package algo.heap.problems;
+package algo.heap.problems.leetcode;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

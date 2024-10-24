@@ -1,4 +1,4 @@
-package algo.queue.problems;
+package algo.queue.problems.leetcode;
 
 import aliu.problems.ds.linkedlist.ListNode;
 
