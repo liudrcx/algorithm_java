@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import static algo.concurrency.Sleeper.sleep;
 
 @Slf4j
-public class GuardedSuspensionPattern {
+public class GuardedSuspension_Pattern {
 
   public static void main(String[] args) {
 //    testGet();
