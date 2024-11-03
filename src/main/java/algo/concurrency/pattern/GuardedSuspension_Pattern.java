@@ -2,7 +2,7 @@ package algo.concurrency.pattern;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static algo.concurrency.Sleeper.sleep;
+import static algo.concurrency.util.Sleeper.sleep;
 
 @Slf4j
 public class GuardedSuspension_Pattern {

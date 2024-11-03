@@ -1,11 +1,10 @@
 package algo.concurrency.pattern;
 
-import algo.concurrency.Sleeper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.TimeUnit;
 
-import static algo.concurrency.Sleeper.sleep;
+import static algo.concurrency.util.Sleeper.sleep;
 
 public class Balking_Pattern {
 

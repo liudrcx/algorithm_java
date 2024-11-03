@@ -1,14 +1,12 @@
 package algo.concurrency.pattern;
 
-import algo.concurrency.Sleeper;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static algo.concurrency.Sleeper.sleep;
+import static algo.concurrency.util.Sleeper.sleep;
 
 /**
  * print 123 in 5 loop

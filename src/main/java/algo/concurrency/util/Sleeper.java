@@ -1,4 +1,4 @@
-package algo.concurrency;
+package algo.concurrency.util;
 
 import java.util.concurrent.TimeUnit;
 
