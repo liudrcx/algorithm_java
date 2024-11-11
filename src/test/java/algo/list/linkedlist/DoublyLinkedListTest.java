@@ -1,7 +1,5 @@
-package algo.list.array;
+package algo.list.linkedlist;
 
-import algo.list.linkedlist.SinglyLinkedList;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,11 +11,51 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DynamicArrayListTest {
+public class DoublyLinkedListTest {
+
+  @Test
+  public void testGet() {
+    DoublyLinkedList<Integer> list1 = new DoublyLinkedList<>();
+    assertThrows(IllegalArgumentException.class,() -> list1.get(0));
+
+    DoublyLinkedList<Integer> list2 = new DoublyLinkedList<>(new Integer[] {1, 2, 3});
+    assertThrows(IllegalArgumentException.class,() -> list2.get(-1));
+    assertEquals(1, list2.get(0));
+    assertEquals(2, list2.get(1));
+    assertEquals(3, list2.get(2));
+    assertThrows(IllegalArgumentException.class,() -> list2.get(3));
+  }
+
+  @Test
+  public void testIsEmpty() {
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+    assertTrue(list.isEmpty());
+
+    list = new DoublyLinkedList<>(new Integer[]{1, 2});
+    assertFalse(list.isEmpty());
+  }
+
+  @Test
+  public void testIsFull() {
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+    assertFalse(list.isFull());
+
+    list = new DoublyLinkedList<>(new Integer[]{1, 2});
+    assertFalse(list.isFull());
+  }
+
+  @Test
+  public void testGetSize() {
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+    assertEquals(0, list.size());
+
+    list = new DoublyLinkedList<>(new Integer[]{1, 2});
+    assertEquals(2, list.size());
+  }
 
   @Test
   public void testAdd() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>(2);
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
     list.add(0, 1);
     list.add(1, 2);
     list.add(2, 3);
@@ -33,7 +71,7 @@ public class DynamicArrayListTest {
 
   @Test
   public void testAddFirst() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>(2);
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
     list.addFirst(1);
     list.addFirst(2);
     list.addFirst(3);
@@ -47,7 +85,7 @@ public class DynamicArrayListTest {
 
   @Test
   public void testAddLast() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>(2);
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
     list.addLast(1);
     list.addLast(2);
     list.addLast(3);
@@ -60,21 +98,8 @@ public class DynamicArrayListTest {
   }
 
   @Test
-  public void testGet() {
-    DynamicArrayList<Integer> list1 = new DynamicArrayList<>();
-    assertThrows(IllegalArgumentException.class,() -> list1.get(0));
-
-    DynamicArrayList<Integer> list2 = new DynamicArrayList<>(new Integer[] {1, 2, 3});
-    assertThrows(IllegalArgumentException.class,() -> list2.get(-1));
-    assertEquals(1, list2.get(0));
-    assertEquals(2, list2.get(1));
-    assertEquals(3, list2.get(2));
-    assertThrows(IllegalArgumentException.class,() -> list2.get(3));
-  }
-
-  @Test
   public void testRemove() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>(new Integer[] {1, 2, 3, 4});
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>(new Integer[] {1, 2, 3, 4});
 
     assertThrowsExactly(IllegalArgumentException.class, () -> list.remove(6));
     assertEquals(3, list.remove(2));
@@ -85,7 +110,7 @@ public class DynamicArrayListTest {
 
   @Test
   public void testRemoveFirst() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>(new Integer[] {1, 2, 3, 4});
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>(new Integer[] {1, 2, 3, 4});
 
     assertEquals(1, list.removeFirst());
     assertEquals(2, list.removeFirst());
@@ -100,7 +125,7 @@ public class DynamicArrayListTest {
 
   @Test
   public void testRemoveLast() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>(new Integer[] {1, 2, 3, 4});
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<>(new Integer[] {1, 2, 3, 4});
 
     assertEquals(4, list.removeLast());
     assertEquals(3, list.removeLast());
@@ -111,32 +136,5 @@ public class DynamicArrayListTest {
     assertTrue(list.isEmpty());
     assertFalse(list.isFull());
     assertEquals(0, list.size());
-  }
-
-  @Test
-  public void testIsEmpty() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>();
-    assertTrue(list.isEmpty());
-
-    list = new DynamicArrayList<>(new Integer[]{1, 2});
-    assertFalse(list.isEmpty());
-  }
-
-  @Test
-  public void testIsFull() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>();
-    assertFalse(list.isFull());
-
-    list = new DynamicArrayList<>(new Integer[]{1, 2});
-    assertFalse(list.isFull());
-  }
-
-  @Test
-  public void testGetSize() {
-    DynamicArrayList<Integer> list = new DynamicArrayList<>();
-    assertEquals(0, list.size());
-
-    list = new DynamicArrayList<>(new Integer[]{1, 2});
-    assertEquals(2, list.size());
   }
 }

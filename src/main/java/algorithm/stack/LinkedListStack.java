@@ -1,7 +1,5 @@
 package algorithm.stack;
 
-import algorithm.list.SinglyLinkedList;
-
 public class LinkedListStack<E> implements StackDs<E>{
 
   private SinglyLinkedList<E> data;

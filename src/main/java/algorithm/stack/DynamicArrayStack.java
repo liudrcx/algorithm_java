@@ -1,7 +1,5 @@
 package algorithm.stack;
 
-import algorithm.list.DynamicArray;
-
 public class DynamicArrayStack<E> implements StackDs<E> {
 
   private DynamicArray<E> data;
