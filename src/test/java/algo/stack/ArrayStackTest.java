@@ -24,14 +24,12 @@ public class ArrayStackTest {
       () -> stack.push(6)
     );
 
-    assertIterableEquals(List.of(5, 4, 3, 2, 1), stack);
+    assertIterableEquals(List.of(1, 2, 3, 4, 5), stack);
   }
 
   @Test
   public void testPoll() {
-    ArrayStack<Integer> stack = new ArrayStack<>(5);
-    stack.push(1);
-    stack.push(2);
+    ArrayStack<Integer> stack = new ArrayStack<>(new Integer[] {1, 2});
 
     assertEquals(2, stack.pop());
     assertEquals(1, stack.pop());
@@ -40,12 +38,10 @@ public class ArrayStackTest {
 
   @Test
   public void testPeek() {
-    ArrayStack<Integer> stack = new ArrayStack<>(5);
+    ArrayStack<Integer> stack1 = new ArrayStack<>(new Integer[] {});
+    assertThrowsExactly(IllegalStateException.class, () -> stack1.peek());
 
-    assertThrowsExactly(IllegalStateException.class, () -> stack.peek());
-    stack.push(1);
-    stack.push(2);
-
-    assertEquals(2, stack.peek());
+    ArrayStack<Integer> stack2 = new ArrayStack<>(new Integer[] {1, 2});
+    assertEquals(2, stack2.peek());
   }
 }

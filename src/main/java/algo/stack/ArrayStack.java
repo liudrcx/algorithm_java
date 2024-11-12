@@ -20,6 +20,16 @@ public class ArrayStack<E> implements Stack<E>, Iterable<E> {
     this(16);
   }
 
+  /**
+   * for testing
+   * @param data
+   */
+  protected ArrayStack(E[] data) {
+    this.data = data;
+    this.size = data.length;
+    this.capacity = data.length;
+  }
+
   @Override
   public int size() {
     return size;
@@ -67,17 +77,17 @@ public class ArrayStack<E> implements Stack<E>, Iterable<E> {
   public Iterator<E> iterator() {
     return new Iterator<E>() {
 
-      int index = size - 1;
+      int index = 0;
 
       @Override
       public boolean hasNext() {
-        return index >= 0;
+        return index < size;
       }
 
       @Override
       public E next() {
         E result = data[index];
-        index--;
+        index++;
         return result;
       }
     };

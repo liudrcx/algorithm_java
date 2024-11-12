@@ -1,6 +1,5 @@
 package algo.stack;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -30,9 +29,7 @@ public class LinkedListStackTest {
 
   @Test
   public void testPoll() {
-    LinkedListStack<Integer> stack = new LinkedListStack<>(5);
-    stack.push(1);
-    stack.push(2);
+    LinkedListStack<Integer> stack = new LinkedListStack<>(new Integer[] {1, 2});
 
     assertEquals(2, stack.pop());
     assertEquals(1, stack.pop());
@@ -41,12 +38,10 @@ public class LinkedListStackTest {
 
   @Test
   public void testPeek() {
-    LinkedListStack<Integer> stack = new LinkedListStack<>(5);
+    LinkedListStack<Integer> stack1 = new LinkedListStack<>();
+    assertThrowsExactly(IllegalStateException.class, () -> stack1.peek());
 
-    assertThrowsExactly(IllegalStateException.class, () -> stack.peek());
-    stack.push(1);
-    stack.push(2);
-
-    assertEquals(2, stack.peek());
+    LinkedListStack<Integer> stack2 = new LinkedListStack<>(new Integer[] {1, 2});
+    assertEquals(2, stack2.peek());
   }
 }
