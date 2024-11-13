@@ -67,6 +67,7 @@ public class ArrayCycleQueue<E> implements Queue<E>, Iterable<E> {
     }
 
     E result = data[head];
+    data[head] = null; // for GC
     head = (head + 1) % capacity;
     size--;
     return result;

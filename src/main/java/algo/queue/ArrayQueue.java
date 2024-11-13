@@ -75,6 +75,7 @@ public class ArrayQueue<E> implements Queue<E>, Iterable<E>{
       throw new IllegalArgumentException("queue is empty");
     }
     E result = data[head];
+    data[head] = null; // for GC
     head++;
     size--;
     return result;

@@ -73,21 +73,25 @@ public class HeapPriorityQueue<E extends Priority> implements PriorityQueue<E>{
   }
 
   private void down(int index) {
-    int leftIndex = (index * 2) + 1;
-    int rightIndex = leftIndex + 1;
-    int maxIndex = index;
+    while(true) {
+      int leftIndex = (index * 2) + 1;
+      int rightIndex = leftIndex + 1;
+      int maxIndex = index;
 
-    if (leftIndex < size && data[leftIndex].priority() > data[maxIndex].priority()) {
-      maxIndex = leftIndex;
-    }
+      if (leftIndex < size && data[leftIndex].priority() > data[maxIndex].priority()) {
+        maxIndex = leftIndex;
+      }
 
-    if (rightIndex < size && data[rightIndex].priority() > data[maxIndex].priority()) {
-      maxIndex = rightIndex;
-    }
+      if (rightIndex < size && data[rightIndex].priority() > data[maxIndex].priority()) {
+        maxIndex = rightIndex;
+      }
 
-    if (maxIndex != index) {
+      if (maxIndex == index) {
+        break;
+      }
+
       swap(maxIndex, index);
-      down(maxIndex);
+      index = maxIndex;
     }
   }
 

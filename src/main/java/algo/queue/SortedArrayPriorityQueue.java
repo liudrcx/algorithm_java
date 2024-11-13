@@ -60,6 +60,7 @@ public class SortedArrayPriorityQueue<E extends Priority> implements PriorityQue
       throw new IllegalStateException("queue is empty");
     }
     E result = data[size - 1];
+    data[size - 1] = null; // for GC
     size--;
     return result;
   }
