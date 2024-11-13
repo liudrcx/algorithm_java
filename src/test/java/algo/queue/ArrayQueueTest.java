@@ -1,6 +1,5 @@
 package algo.queue;
 
-import algo.list.linkedlist.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,38 +10,38 @@ import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LinkedListQueueTest {
+public class ArrayQueueTest {
 
   @Test
   public void testIsEmpty() {
-    LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+    ArrayQueue<Integer> queue = new ArrayQueue<>();
     assertTrue(queue.isEmpty());
 
-    queue = new LinkedListQueue<>(new Integer[]{1, 2});
+    queue = new ArrayQueue<>(new Integer[]{1, 2});
     assertFalse(queue.isEmpty());
   }
 
   @Test
   public void testIsFull() {
-    LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+    ArrayQueue<Integer> queue = new ArrayQueue<>();
     assertFalse(queue.isFull());
 
-    queue = new LinkedListQueue<>(new Integer[]{1, 2});
+    queue = new ArrayQueue<>(new Integer[]{1, 2});
     assertTrue(queue.isFull());
   }
 
   @Test
   public void testGetSize() {
-    LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+    ArrayQueue<Integer> queue = new ArrayQueue<>();
     assertEquals(0, queue.size());
 
-    queue = new LinkedListQueue<>(new Integer[]{1, 2});
+    queue = new ArrayQueue<>(new Integer[]{1, 2});
     assertEquals(2, queue.size());
   }
 
   @Test
   public void testOffer() {
-    LinkedListQueue<Integer> queue = new LinkedListQueue<>(4);
+    ArrayQueue<Integer> queue = new ArrayQueue<>(4);
     queue.offer(1);
     queue.offer(2);
     queue.offer(3);
@@ -58,7 +57,7 @@ public class LinkedListQueueTest {
 
   @Test
   public void testPoll() {
-    LinkedListQueue<Integer> queue = new LinkedListQueue<>(new Integer[] {1, 2});
+    ArrayQueue<Integer> queue = new ArrayQueue<>(new Integer[] {1, 2});
 
     assertEquals(1, queue.poll());
     assertEquals(2, queue.poll());
@@ -67,10 +66,10 @@ public class LinkedListQueueTest {
 
   @Test
   public void testPeek() {
-    LinkedListQueue<Integer> queue = new LinkedListQueue<>(new Integer[] {1, 2});
+    ArrayQueue<Integer> queue = new ArrayQueue<>(new Integer[] {1, 2});
     assertEquals(1, queue.peek());
 
-    LinkedListQueue<Integer> emptyQueue = new LinkedListQueue<>();
+    ArrayQueue<Integer> emptyQueue = new ArrayQueue<>();
     assertThrowsExactly(IllegalArgumentException.class, () -> emptyQueue.peek());
   }
 }
