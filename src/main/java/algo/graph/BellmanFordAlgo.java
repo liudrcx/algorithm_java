@@ -1,21 +1,15 @@
 package algo.graph;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Stack;
 
-import static java.util.Comparator.comparingInt;
-
-public class DijkstraAlgo {
+public class BellmanFordAlgo {
 
   LinkedHashMap<String, Vertex> graph = new LinkedHashMap<>();
 
-  public DijkstraAlgo(String[][] items) {
+  public BellmanFordAlgo(String[][] items) {
     for (String[] item : items) {
       graph.computeIfAbsent(item[0], k -> new Vertex(k));
       graph.computeIfAbsent(item[1], k -> new Vertex(k));
@@ -64,28 +58,14 @@ public class DijkstraAlgo {
   private void calcMinPath(Vertex start) {
     start.distance = 0;
 
-    PriorityQueue<Vertex> queue =
-      new PriorityQueue<>(comparingInt(v -> v.distance));
-
-    for(Vertex vertex : graph.values()) {
-      queue.offer(vertex);
-    }
-
-    while(!queue.isEmpty()) {
-      Vertex pop = queue.poll();
-
-      if (!pop.isVisited) {
-        pop.isVisited = true;
-
-        for (Edge edge : pop.edges) {
-          Vertex desTo = edge.destTo;
-          if (!desTo.isVisited) {
-            int d = edge.weight + pop.distance;
-            if (d < desTo.distance) {
-              desTo.distance = d;
-              desTo.prevVertex = pop;
-              queue.offer(desTo);
-            }
+    for (int i = 0; i < graph.size() - 1; i++) {
+      for (Vertex source : graph.values()) {
+        for(Edge edge : source.edges) {
+          Vertex dest = edge.destTo;
+          if (source.distance != Integer.MAX_VALUE
+            && ((source.distance + edge.weight) < dest.distance)) {
+            dest.distance = source.distance + edge.weight;
+            dest.prevVertex = source;
           }
         }
       }
@@ -96,8 +76,6 @@ public class DijkstraAlgo {
     String name;
 
     int distance = Integer.MAX_VALUE;
-
-    boolean isVisited = false;
 
     Vertex prevVertex;
 
