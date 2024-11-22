@@ -71,6 +71,14 @@ public class Heap<E> {
     down(0);
   }
 
+  public boolean isEmpty() {
+    return size == 0;
+  }
+
+  public boolean isFull() {
+    return size == capacity;
+  }
+
   private void up(E val) {
     int child = size;
     while(child > 0) {

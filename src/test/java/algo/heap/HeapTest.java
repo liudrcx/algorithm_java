@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HeapTest {
 
@@ -66,5 +68,21 @@ public class HeapTest {
     assertEquals(2, heap.poll());
     assertEquals(1, heap.poll());
     assertThrows(IllegalStateException.class, () -> heap.poll());
+  }
+
+  @Test
+  public void testIsEmptyAndIsFull() {
+    Heap<Integer> heap = new Heap<>(3, (a, b) -> a - b);
+    assertTrue(heap.isEmpty());
+    assertFalse(heap.isFull());
+
+    heap.offer(1);
+    assertFalse(heap.isEmpty());
+    assertFalse(heap.isFull());
+
+    heap.offer(2);
+    heap.offer(3);
+    assertFalse(heap.isEmpty());
+    assertTrue(heap.isFull());
   }
 }
