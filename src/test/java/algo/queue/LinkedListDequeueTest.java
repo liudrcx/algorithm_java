@@ -1,12 +1,16 @@
-package liudrcx.algo.dequeue;
+package algo.queue;
+
 
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LinkedListDequeTest {
+public class LinkedListDequeueTest {
 
   @Test
   public void offer() {
@@ -16,7 +20,7 @@ public class LinkedListDequeTest {
     deque.offerFirst(3);
     deque.offerLast(4);
     deque.offerLast(5);
-    assertFalse(deque.offerLast(6));
+    assertThrowsExactly(IllegalArgumentException.class, () -> deque.offerLast(6));
     assertIterableEquals(List.of(3, 2, 1, 4, 5), deque);
   }
 
@@ -34,7 +38,7 @@ public class LinkedListDequeTest {
     assertEquals(5,deque.pollLast());
     assertEquals(4,deque.pollLast());
     assertEquals(3,deque.pollLast());
-    assertNull(deque.pollLast());
     assertTrue(deque.isEmpty());
+    assertThrowsExactly(IllegalArgumentException.class, () -> deque.pollLast());
   }
 }
