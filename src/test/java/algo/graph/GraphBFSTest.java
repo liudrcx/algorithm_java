@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static algo.graph.GraphTestUtil.assertContainsPath;
+
 public class GraphBFSTest {
 
   @Test
@@ -21,12 +23,15 @@ public class GraphBFSTest {
     graphBFS.addEdge(6, 7);
 
     List<Integer> path = graphBFS.findPath(0, 6);
-    GraphTestUtil.assertContainsPath(
+    assertContainsPath(
       List.of(
         List.of(0, 1, 4, 6),
         List.of(0, 3, 4, 6)
       ),
       path
     );
+
+
+    System.out.println(path);
   }
 }
