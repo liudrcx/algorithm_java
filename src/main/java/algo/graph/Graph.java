@@ -18,6 +18,10 @@ public class Graph {
     }
 
     for(String[] item : items) {
+      if (item.length > 2) {
+        throw new IllegalArgumentException("invalid graph input");
+      }
+
       Edge edge = new Edge();
       edge.destTo = vertexMap.get(item[1]);
       vertexMap.get(item[0]).edges.add(edge);
