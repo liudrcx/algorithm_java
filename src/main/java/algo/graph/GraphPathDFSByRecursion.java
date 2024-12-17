@@ -5,9 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
-public class GraphBFS<T> {
+public class GraphPathDFSByRecursion<T> {
 
   Map<T, Vertex> graph = new HashMap<>();
 
@@ -23,49 +22,50 @@ public class GraphBFS<T> {
       throw new IllegalArgumentException("invalid start : " + start);
     }
 
-    if (graph.get(end) == null) {
+    Vertex ve = graph.get(end);
+    if (ve == null) {
       throw new IllegalArgumentException("invalid end : " + end);
     }
 
     LinkedList<T> result = new LinkedList<>();
-    if (start.equals(end)) {
+    if (vs == ve) {
       result.add(start);
       return result;
     }
 
-    Queue<Vertex> queue = new LinkedList<>();
-    vs.isVisited = true;
-    queue.offer(vs);
+    findPath(vs, ve);
 
-    Vertex ve = null;
-    while (!queue.isEmpty()) {
-      Vertex vc = queue.poll();
-      if (vc.v.equals(end)) {
-        ve = vc;
-        break;
-      }
-
-      for (Edge edge : vc.edges) {
-        Vertex dest = edge.dest;
-        if (!dest.isVisited) {
-          dest.isVisited = true;
-          dest.prev = vc;
-          queue.offer(dest);
-        }
-      }
-    }
-
-    if (ve == null) {
-      return result;
-    }
-
-    Vertex v = ve;
-    while(v != vs) {
-      result.addFirst(v.v);
-      v = v.prev;
+    Vertex vc = ve;
+    while(vc != vs) {
+      result.addFirst(vc.v);
+      vc = vc.prev;
     }
     result.addFirst(vs.v);
     return result;
+  }
+
+  boolean found = false;
+
+  void findPath(Vertex vs, Vertex ve) {
+    if (found == true) {
+      return;
+    }
+
+    if (vs.isVisited == true) {
+      return;
+    }
+
+    vs.isVisited = true;
+    if (vs == ve) {
+      found = true;
+      return;
+    }
+
+    for (Edge edge : vs.edges) {
+      Vertex vd = edge.dest;
+      vd.prev = vs;
+      findPath(vd, ve);
+    }
   }
 
   class Vertex {
@@ -95,4 +95,5 @@ public class GraphBFS<T> {
       this.dest = dest;
     }
   }
+
 }
