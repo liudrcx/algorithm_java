@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-public class TopologicalSortKahan<T> {
+public class TopologicalSortKahan<T> implements TopologicalSort<T> {
 
   Map<T, Vertex> graph = new HashMap<>();
 
@@ -17,6 +17,7 @@ public class TopologicalSortKahan<T> {
     graph.get(source).addDest(graph.get(dest));
   }
 
+  @Override
   public List<T> resolveTopologicalSort() {
     List<T> result = new ArrayList<>();
 

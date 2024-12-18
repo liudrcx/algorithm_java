@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-public class GraphPathBFS<T> {
+public class GraphPathBFS<T> implements GraphPath<T> {
 
   Map<T, Vertex> graph = new HashMap<>();
 
@@ -17,6 +17,7 @@ public class GraphPathBFS<T> {
     graph.get(source).addEdge(graph.get(dest));
   }
 
+  @Override
   public List<T> findPath(T start, T end) {
     Vertex vs = graph.get(start);
     if (vs == null) {

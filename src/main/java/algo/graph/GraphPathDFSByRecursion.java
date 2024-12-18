@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class GraphPathDFSByRecursion<T> {
+public class GraphPathDFSByRecursion<T> implements GraphPath<T> {
 
   Map<T, Vertex> graph = new HashMap<>();
 
@@ -16,6 +16,7 @@ public class GraphPathDFSByRecursion<T> {
     graph.get(source).addEdge(graph.get(dest));
   }
 
+  @Override
   public List<T> findPath(T start, T end) {
     Vertex vs = graph.get(start);
     if (vs == null) {

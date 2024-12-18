@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-public class GraphTraverseDFS<T> {
+public class GraphTraverseDFS<T> implements GraphTraversePath<T> {
 
   Map<T, Vertex> graph = new HashMap<>();
 
@@ -16,6 +16,7 @@ public class GraphTraverseDFS<T> {
     graph.get(source).addEdge(graph.get(dest));
   }
 
+  @Override
   public List<T> traversePath(T start) {
     Vertex vs = graph.get(start);
     if (vs == null) {
