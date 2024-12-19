@@ -11,7 +11,7 @@ import java.util.Queue;
 
 import static java.util.Comparator.comparingInt;
 
-public class DijkstraShortestPath<T> implements SingleSourceShortestPath<T> {
+public class DijkstraShortestPath<T> implements GraphPath<T> {
 
   Map<T, Vertex> graph = new HashMap<>();
 
@@ -27,13 +27,18 @@ public class DijkstraShortestPath<T> implements SingleSourceShortestPath<T> {
   }
 
   @Override
-  public List<List<T>> findPaths(T source) {
-    Vertex sv = graph.get(source);
-    if (sv == null) {
-      throw new IllegalArgumentException("invalid source: " + source);
+  public List<T> findPath(T start, T end) {
+    Vertex vs = graph.get(start);
+    if (vs == null) {
+      throw new IllegalArgumentException("invalid start: " + start);
     }
 
-    sv.dist = 0;
+    Vertex ve = graph.get(end);
+    if (ve == null) {
+      throw new IllegalArgumentException("invalid end: " + end);
+    }
+
+    vs.dist = 0;
 
     PriorityQueue<Vertex> queue = new PriorityQueue<>(comparingInt(v -> v.dist));
     for (Vertex vertex : graph.values()) {
@@ -56,18 +61,15 @@ public class DijkstraShortestPath<T> implements SingleSourceShortestPath<T> {
       }
     }
 
-    List<List<T>> result = new ArrayList<>();
-    for (Vertex vertex : graph.values()) {
-      LinkedList<T> path = new LinkedList<>();
-      result.add(path);
-      Vertex v = vertex;
-      while(v != null) {
-        path.addFirst(v.v);
-        v = v.prev;
-      }
+    LinkedList<T> path = new LinkedList<>();
+    Vertex v = ve;
+    while(v != vs) {
+      path.addFirst(v.v);
+      v = v.prev;
     }
+    path.addFirst(vs.v);
 
-    return result;
+    return path;
   }
 
   class Vertex {
