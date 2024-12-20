@@ -1,6 +1,5 @@
 package algo.tree.problems;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,7 +7,7 @@ import java.util.List;
 import static algo.tree.problems.Construct_PostExpression_To_ExpressionTree.*;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
-public class Construct_PostExpression_To_ExpressionTreeTest {
+public class Construct_PostExpression_To_ExpressionTree_Test {
 
   @Test
   public void testConstruct() {
