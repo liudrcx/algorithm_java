@@ -1,4 +1,4 @@
-package aliu.problems.ds.array;
+package algo.list.array.problems.leetcode;
 
 /**
  * https://leetcode.com/problems/merge-sorted-array/description/
