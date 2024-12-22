@@ -1,4 +1,4 @@
-package aliu.problems.ds.linkedlist;
+package algo.list.linkedlist.problems.leetcode;
 
 /**
  * https://leetcode.com/problems/delete-node-in-a-linked-list/
@@ -17,7 +17,7 @@ package aliu.problems.ds.linkedlist;
  * All the values after node should be in the same order.
  *
  */
-public class Delete_Node_in_a_Linked_List_237 {
+public class N237_Delete_Node_in_a_Linked_List {
 
   /**
    * Definition for singly-linked list.

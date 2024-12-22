@@ -1,4 +1,4 @@
-package aliu.problems.ds.linkedlist;
+package algo.list.linkedlist.problems.leetcode;
 
 /**
  * https://leetcode.com/problems/middle-of-the-linked-list/
@@ -7,7 +7,7 @@ package aliu.problems.ds.linkedlist;
  *
  * If there are two middle nodes, return the second middle node.
  */
-public class Middle_of_the_Linked_List_876 {
+public class N876_Middle_of_the_Linked_List {
 
   /**
    * Definition for singly-linked list.

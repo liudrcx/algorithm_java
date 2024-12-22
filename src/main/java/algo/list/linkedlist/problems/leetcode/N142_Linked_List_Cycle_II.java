@@ -1,11 +1,11 @@
-package aliu.problems.ds.linkedlist;
+package algo.list.linkedlist.problems.leetcode;
 
 /**
  * https://leetcode.com/problems/linked-list-cycle-ii/
  *
  * Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
  */
-public class Linked_List_Cycle_II_142 {
+public class N142_Linked_List_Cycle_II {
 
   /**
    * Definition for singly-linked list.

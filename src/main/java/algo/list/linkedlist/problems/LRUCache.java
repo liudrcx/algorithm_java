@@ -1,4 +1,4 @@
-package aliu.problems.ds.linkedlist;
+package algo.list.linkedlist.problems;
 
 public class LRUCache<K, V> {
 

@@ -1,4 +1,4 @@
-package aliu.problems.ds.linkedlist;
+package algo.list.linkedlist.problems.leetcode;
 
 /**
  * https://leetcode.com/problems/linked-list-cycle/
@@ -7,7 +7,7 @@ package aliu.problems.ds.linkedlist;
  * Return true if there is a cycle in the linked list. Otherwise, return false.
  *
  */
-public class Linked_List_Cycle_141 {
+public class N141_Linked_List_Cycle {
 
   /**
    * Definition for singly-linked list.

@@ -1,4 +1,4 @@
-package aliu.problems.ds.linkedlist;
+package algo.list.linkedlist.problems;
 
 import java.util.ArrayList;
 import java.util.List;

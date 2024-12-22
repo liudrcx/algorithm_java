@@ -1,11 +1,11 @@
-package aliu.problems.ds.linkedlist;
+package algo.list.linkedlist.problems.leetcode;
 
 /**
  * https://leetcode.com/problems/palindrome-linked-list/
  *
  * Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
  */
-public class Palindrome_Linked_List_234 {
+public class N234_Palindrome_Linked_List {
 
   /**
    * Definition for singly-linked list.

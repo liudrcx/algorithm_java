@@ -1,4 +1,4 @@
-package aliu.problems.ds.linkedlist;
+package algo.list.linkedlist.problems.leetcode;
 
 /**
  * https://leetcode.com/problems/merge-k-sorted-lists/
@@ -8,7 +8,7 @@ package aliu.problems.ds.linkedlist;
  * Merge all the linked-lists into one sorted linked-list and return it.
  *
  */
-public class Merge_k_Sorted_Lists_23 {
+public class N23_Merge_k_Sorted_Lists {
 
   /**
    * Definition for singly-linked list.
