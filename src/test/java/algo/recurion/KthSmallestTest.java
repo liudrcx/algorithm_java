@@ -1,4 +1,4 @@
-package aliu.algo.sorting;
+package algo.recurion;
 
 import algo.recursion.KthSmallest;
 import org.junit.jupiter.api.Test;

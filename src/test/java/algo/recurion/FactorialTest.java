@@ -1,4 +1,4 @@
-package aliu.algo.recursion;
+package algo.recurion;
 
 import algo.recursion.Factorial;
 import org.junit.jupiter.api.Test;
