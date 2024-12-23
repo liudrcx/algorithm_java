@@ -1,6 +1,6 @@
 package aliu.algo.sorting;
 
-import aliu.algo.sorting.KthSmallest;
+import algo.recursion.KthSmallest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

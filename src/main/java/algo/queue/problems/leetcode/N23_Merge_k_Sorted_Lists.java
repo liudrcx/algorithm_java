@@ -1,7 +1,5 @@
 package algo.queue.problems.leetcode;
 
-import aliu.problems.ds.linkedlist.ListNode;
-
 import java.util.PriorityQueue;
 
 /**

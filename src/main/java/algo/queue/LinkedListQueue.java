@@ -37,6 +37,7 @@ public class LinkedListQueue<E> implements Queue<E>, Iterable<E> {
       prev.next = current;
 
       prev = prev.next;
+      tail = prev;
     }
   }
 

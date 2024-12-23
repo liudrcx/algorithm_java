@@ -86,18 +86,18 @@ public class ArrayCycleQueue<E> implements Queue<E>, Iterable<E> {
     return new Iterator<E>() {
 
       int index = head;
-      int iterIndex = 0;
+      int count = 0;
 
       @Override
       public boolean hasNext() {
-        return iterIndex < size;
+        return count < size;
       }
 
       @Override
       public E next() {
         E result = data[index];
         index = (index + 1) % capacity;
-        iterIndex++;
+        count++;
         return result;
       }
     };

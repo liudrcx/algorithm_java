@@ -1,6 +1,6 @@
 package aliu.algo.recursion;
 
-import aliu.algo.recursion.Sum;
+import algo.recursion.Sum;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

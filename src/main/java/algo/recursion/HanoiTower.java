@@ -1,4 +1,4 @@
-package aliu.algo.recursion;
+package algo.recursion;
 
 import java.util.LinkedList;
 

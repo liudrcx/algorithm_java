@@ -1,6 +1,6 @@
 package aliu.algo.recursion;
 
-import aliu.algo.recursion.Fibonacci;
+import algo.recursion.Fibonacci;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

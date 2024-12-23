@@ -1,17 +1,13 @@
-package aliu.problems.algo.recursion;
-
-import org.assertj.core.api.Assertions;
+package algo.recursion.leetcode;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  *https://leetcode.com/problems/climbing-stairs/
  */
-public class Climbing_Stairs_70 {
+public class N70_Climbing_Stairs {
 
   static class Solution {
     public int climbStairs(int n) {

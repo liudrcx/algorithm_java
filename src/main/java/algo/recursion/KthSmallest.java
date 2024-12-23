@@ -1,4 +1,4 @@
-package aliu.algo.sorting;
+package algo.recursion;
 public class KthSmallest {
 
   public static int kthSmallest(int[] arr, int k) {
