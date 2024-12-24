@@ -20,9 +20,7 @@ public class ShellSorting {
           }
         }
 
-        if (j != i - gap) {
-          data[j + gap] = value;
-        }
+        data[j + gap] = value;
       }
     }
   }

@@ -19,9 +19,7 @@ public class InsertionSorting {
         }
       }
 
-      if (j != i - 1) {
-        data[j + 1] = value;
-      }
+      data[j + 1] = value;
     }
   }
 }
