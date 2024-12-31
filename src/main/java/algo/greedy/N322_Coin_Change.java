@@ -1,5 +1,6 @@
 package algo.greedy;
 
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -7,6 +8,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class N322_Coin_Change {
 
+  /**
+   * using method of exhaustion
+   */
   public static class Solution1 {
     public int coinChange(int[] coins, int amount) {
       conChange(0, coins, amount, new AtomicInteger(-1));
@@ -32,5 +36,32 @@ public class N322_Coin_Change {
 
       count.decrementAndGet();
     }
+  }
+
+  /**
+   * using greedy, may not get right answer
+   */
+  public static class Solution2 {
+
+    public int coinChange(int[] coins, int amount) {
+      coins = Arrays.stream(coins).boxed().sorted((l1, l2) -> l2 - l1).mapToInt(i -> i).toArray();
+
+      int remain = amount;
+      int count = 0;
+
+      for (int coin : coins) {
+        while(remain >= coin) {
+          remain -= coin;
+          count++;
+        }
+
+        if (remain == coin) {
+          break;
+        }
+      }
+
+      return remain > 0 ? -1 : count;
+    }
+
   }
 }
