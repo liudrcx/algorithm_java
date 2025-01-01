@@ -1,6 +1,6 @@
-package algo.tree;
+package algo.greedy;
 
-import org.junit.jupiter.api.Assertions;
+import algo.greedy.HuffmanTree;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

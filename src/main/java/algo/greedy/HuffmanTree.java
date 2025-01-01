@@ -1,4 +1,4 @@
-package algo.tree;
+package algo.greedy;
 
 import java.util.Comparator;
 import java.util.HashMap;
