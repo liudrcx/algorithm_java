@@ -81,12 +81,10 @@ public class HashTable<K, V> {
     for (int i = 0; i < data.length; i++) {
       Entry<K, V> current = data[i].next;
       if (current != null) {
-        Entry<K, V> aHead = new Entry<>(-1, null, null);
-        newTable[i] = aHead;
+        Entry<K, V> aHead = newTable[i];
         Entry<K, V> aCurrent = aHead;
 
-        Entry<K, V> bHead = new Entry<>(-1, null, null);
-        newTable[i + data.length] = bHead;
+        Entry<K, V> bHead = newTable[i + data.length];
         Entry<K, V> bCurrent = bHead;
 
         while(current != null) {
