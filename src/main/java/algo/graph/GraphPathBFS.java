@@ -24,12 +24,13 @@ public class GraphPathBFS<T> implements GraphPath<T> {
       throw new IllegalArgumentException("invalid start : " + start);
     }
 
-    if (graph.get(end) == null) {
+    Vertex ve = graph.get(end);
+    if (ve == null) {
       throw new IllegalArgumentException("invalid end : " + end);
     }
 
     LinkedList<T> result = new LinkedList<>();
-    if (start.equals(end)) {
+    if (vs == ve) {
       result.add(start);
       return result;
     }
@@ -37,14 +38,12 @@ public class GraphPathBFS<T> implements GraphPath<T> {
     Queue<Vertex> queue = new LinkedList<>();
     queue.offer(vs);
 
-    Vertex ve = null;
     while (!queue.isEmpty()) {
       Vertex vc = queue.poll();
       if (!vc.isVisited) {
         vc.isVisited = true;
 
-        if (vc.v.equals(end)) {
-          ve = vc;
+        if (vc == ve) {
           break;
         }
 

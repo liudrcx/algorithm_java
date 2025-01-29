@@ -55,8 +55,8 @@ public class GraphPathDFSByRecursion<T> implements GraphPath<T> {
     if (vs.isVisited == true) {
       return;
     }
-
     vs.isVisited = true;
+
     if (vs == ve) {
       found = true;
       return;
