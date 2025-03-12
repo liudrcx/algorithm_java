@@ -26,6 +26,5 @@ public abstract class MergeSorting<T extends Comparable<T>> {
     }
 
     System.arraycopy(tmp, 0, data, leftIndex, rightIndex - leftIndex + 1);
-
   }
 }
