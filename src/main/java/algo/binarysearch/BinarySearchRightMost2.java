@@ -12,10 +12,10 @@ public class BinarySearchRightMost2<E extends Comparable<E>> implements BinarySe
 
     while(i <= j) {
       int mid = (i + j) >>> 1;
-      if (target.compareTo(data[mid]) < 0) {
-        j = mid - 1;
-      } else {
+      if (target.compareTo(data[mid]) >= 0) {
         i = mid + 1;
+      } else {
+        j = mid - 1;
       }
     }
 
